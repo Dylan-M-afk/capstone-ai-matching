@@ -6,7 +6,7 @@ export default function NavBar() {
         {"name":"Home", "href":"/"},
         {"name":"Login/Register", "href":"/login"},
         {"name":"Dashboard", "href":"/dashboard"},
-        {"name":"profile", "href":"/profile"},
+        {"name":"Profile", "href":"/profile"},
     ]
  
   return (
