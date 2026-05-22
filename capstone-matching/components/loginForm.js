@@ -1,24 +1,24 @@
-// import Navbar from '../components/navbar'
+import { signIn } from '../app/login/actions'
 
 export default function LoginForm() {
 
     return (
-            <form class="rounded px-8 pt-6 pb-8 mb-4">
-                <div class="mb-4">
-                    <label class="login-form-label">
+            <form action={signIn} className="rounded px-8 pt-6 pb-8 mb-4">
+                <div className="mb-4">
+                    <label className="login-form-label">
                         Email:
                     </label>
-                    <input class="login-form-field" id="username" type="text" placeholder="example@exmail.com"></input>
+                    <input className="login-form-field" id="username" type="text" placeholder="example@exmail.com"></input>
                 </div>
-                <div class="mb-6">
-                    <label class="login-form-label">
+                <div className="mb-6">
+                    <label className="login-form-label">
                         Password:
                     </label>
-                    <input class="login-form-field" id="password" type="password" placeholder="******************"></input>
-                    {/* <p class="text-red-500 text-xs italic">Please choose a password.</p> */}
+                    <input className="login-form-field" id="password" type="password" placeholder="******************"></input>
+                    {/* <p className="text-red-500 text-xs italic">Please choose a password.</p> */}
                 </div>
-                <div class="flex items-center">
-                    <button class="button" type="button">
+                <div className="flex items-center">
+                    <button className="button" type="submit">
                         Log In
                     </button>
                 </div>
