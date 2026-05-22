@@ -3,39 +3,39 @@
 export default function RegisterForm() {
 
     return (
-        <form class="rounded px-8 pt-6 pb-8 mb-4">
-            <div class="mb-4">
-                <label class="login-form-label">
+        <form className="rounded px-8 pt-6 pb-8 mb-4">
+            <div className="mb-4">
+                <label className="login-form-label">
                     Full Name:
                 </label>
-                <input class="login-form-field" id="fullname" type="text" placeholder="Jane Doe"></input>
+                <input className="login-form-field" id="fullname" type="text" placeholder="Jane Doe"></input>
             </div>
 
-            <div class="mb-4">
-                <label class="login-form-label">
+            <div className="mb-4">
+                <label className="login-form-label">
                     Email:
                 </label>
-                <input class="login-form-field" id="username" type="text" placeholder="example@exmail.com"></input>
+                <input className="login-form-field" id="username" type="text" placeholder="example@exmail.com"></input>
             </div>
 
-            <div class="mb-6">
-                <label class="login-form-label">
+            <div className="mb-6">
+                <label className="login-form-label">
                     Password:
                 </label>
-                <input class="login-form-field" id="password" type="password" placeholder="******************"></input>
-                {/* <p class="text-red-500 text-xs italic">Please choose a password.</p> */}
+                <input className="login-form-field" id="password" type="password" placeholder="******************"></input>
+                {/* <p className="text-red-500 text-xs italic">Please choose a password.</p> */}
             </div>
 
-            <div class="mb-6">
-                <label class="login-form-label">
+            <div className="mb-6">
+                <label className="login-form-label">
                     Confirm Password:
                 </label>
-                <input class="login-form-field" id="confirm-password" type="password" placeholder="******************"></input>
-                {/* <p class="text-red-500 text-xs italic">Please choose a password.</p> */}
+                <input className="login-form-field" id="confirm-password" type="password" placeholder="******************"></input>
+                {/* <p className="text-red-500 text-xs italic">Please choose a password.</p> */}
             </div>
 
-            <div class="flex items-center">
-                <button class="button" type="button">
+            <div className="flex items-center">
+                <button className="button" type="button">
                     Register
                 </button>
             </div>
