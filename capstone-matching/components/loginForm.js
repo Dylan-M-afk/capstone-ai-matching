@@ -8,13 +8,13 @@ export default function LoginForm() {
                     <label className="login-form-label">
                         Email:
                     </label>
-                    <input className="login-form-field" id="username" type="text" placeholder="example@exmail.com"></input>
+                    <input className="login-form-field" id="email" type="text" name="email" placeholder="example@exmail.com"></input>
                 </div>
                 <div className="mb-6">
                     <label className="login-form-label">
                         Password:
                     </label>
-                    <input className="login-form-field" id="password" type="password" placeholder="******************"></input>
+                    <input className="login-form-field" id="password" name="password" type="password" placeholder="******************"></input>
                     {/* <p className="text-red-500 text-xs italic">Please choose a password.</p> */}
                 </div>
                 <div className="flex items-center">
