@@ -33,7 +33,7 @@ export default function LoginForm() {
     const roleRedirects = {
       admin: '/admin/dashboard',
       company: '/company/dashboard',
-      user: '/user/dashboard',
+      student: '/user/dashboard',
     }
 
     router.push(roleRedirects[profile?.role] ?? '/user/dashboard')

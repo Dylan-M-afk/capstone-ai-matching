@@ -11,6 +11,9 @@ export async function signUp(formData) {
     password: formData.get('password'),
   })
 
-  if (error) redirect('/error')
-  redirect('/check-your-email')
+  if (error){
+    console.log(error)
+    redirect('/error')
+  } 
+  redirect('/login')
 }
