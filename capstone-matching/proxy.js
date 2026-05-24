@@ -1,7 +1,9 @@
+// proxy.js
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse } from 'next/server'
 
 export async function proxy(request) {
+  // console.log('cookies:', request.cookies.getAll())
   let supabaseResponse = NextResponse.next({ request })
 
   const supabase = createServerClient(
@@ -25,13 +27,52 @@ export async function proxy(request) {
     }
   )
 
-  await supabase.auth.getUser()
+  const { data: { user } } = await supabase.auth.getUser()
+  const path = request.nextUrl.pathname
+
+  // console.log("Info: ")
+  // console.log(user)
+  // console.log(path)
+
+  // Redirect unauthenticated users to login
+  if (!user && path !== '/login') {
+    return NextResponse.redirect(new URL('/login', request.url))
+  }
+
+  if (user) {
+    const { data: profile } = await supabase
+      .from('users')
+      .select('role')
+      .eq('id', user.id)
+      .single()
+
+    const role = profile?.role
+    const path = request.nextUrl.pathname
+
+    console.log(role)
+
+    const allowedPaths = {
+      admin: '/admin',
+      company: '/company',
+      student: '/user',
+    }
+
+    const allowedPrefix = allowedPaths[role]
+
+    // If the path doesn't start with the user's allowed prefix, redirect
+    if (allowedPrefix && !path.startsWith(allowedPrefix)) {
+      return NextResponse.redirect(new URL(`${allowedPrefix}/dashboard`, request.url))
+    }
+  }
 
   return supabaseResponse
 }
 
 export const config = {
   matcher: [
-    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+    '/admin/:path*',
+    '/company/:path*',
+    '/user/:path*',
+    '/login',
   ],
 }

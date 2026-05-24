@@ -17,13 +17,11 @@ export async function createClient() {
             cookiesToSet.forEach(({ name, value, options }) =>
               cookieStore.set(name, value, options)
             )
-          } catch {
-            // Called from a Server Component — safe to ignore if middleware
-            // is handling session refreshes.
+          } catch (e) {
+            console.log('cookie set error:', e)
           }
         },
       },
     }
   )
 }
-
