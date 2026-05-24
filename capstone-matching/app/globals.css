@@ -3,17 +3,19 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --capstone-green: #e6fff5;
+  --capstone-green: #dcfff1;
   --capstone-green-strong: #7bffca;
-  --capstone-blue: #edffff;
+  --capstone-blue: #deffff;
   --capstone-blue-strong: #9bffff;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-green: var(--capstone-green);
-  --color-blue: var(--capstone-blue);
+  --color-capstone-green: var(--capstone-green);
+  --color-capstone-blue: var(--capstone-blue);
+  --color-capstone-green-strong: var(--capstone-green-strong);
+  --color-capstone-blue-strong: var(--capstone-blue-strong);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -27,18 +29,18 @@ body {
 }
 
 .button {
-  @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 my-2 mx-2 rounded 
+  @apply bg-capstone-green hover:bg-capstone-green-strong text-black border-2 border-solid border-black font-bold py-2 px-4 my-2 mx-2 rounded 
 }
 
 .button-disabled {
-  @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 my-2 mx-2 rounded opacity-50
+  @apply bg-capstone-green hover:bg-capstone-green-strong text-black border-2 border-solid border-black font-bold py-2 px-4 my-2 mx-2 rounded opacity-50
 }
 
 /* ========== LAYOUT ========== */
 
 .nav-header {
-  background-color: #edffff;
-  border-bottom: 1px solid black;
+  background-color: var(--capstone-blue);
+  border-bottom: 4px solid black;
 
   display: flex;
   flex-direction: column;
@@ -66,6 +68,49 @@ body {
   margin: 15px 55px;
 }
 
+/* ========== HOME ========== */
+.home-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-content-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--capstone-blue);
+  border: 3px solid black;
+
+  width: 60%;
+  margin-top: 3%; 
+}
+
+.home-header-text {
+  font-size: xx-large;
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 12px solid black;
+
+  margin-top: 2%;
+}
+
+
+.home-body-text {
+  font-size: large;
+  text-align: center;
+  width: 60%;
+  padding: 5px;
+  margin: 10px 0px 30px 0px;
+}
+
+.home-login-btn {
+  @apply text-[x-large] font-bold mb-10 p-2.5 rounded-[10px] border-[5px] border-solid border-[black] bg-capstone-green hover:bg-capstone-green-strong;
+}
+
+
 /* ========== LOGIN/REGISTER ========== */
 
 .login-register-container{
@@ -81,7 +126,7 @@ body {
 }
 
 .login-register-form-container {
-  background-color: var(--capstone-green);
+  background-color: var(--capstone-blue);
   border: 3px solid black;
   border-radius: 5px;
   width: fit-content;
