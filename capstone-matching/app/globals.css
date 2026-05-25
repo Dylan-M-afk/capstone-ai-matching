@@ -1,0 +1,152 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --capstone-green: #dcfff1;
+  --capstone-green-strong: #7bffca;
+  --capstone-blue: #deffff;
+  --capstone-blue-strong: #9bffff;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-capstone-green: var(--capstone-green);
+  --color-capstone-blue: var(--capstone-blue);
+  --color-capstone-green-strong: var(--capstone-green-strong);
+  --color-capstone-blue-strong: var(--capstone-blue-strong);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* ========== GLOBAL STYLES ========== */
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.button {
+  @apply bg-capstone-green hover:bg-capstone-green-strong text-black border-2 border-solid border-black font-bold py-2 px-4 my-2 mx-2 rounded 
+}
+
+.button-disabled {
+  @apply bg-capstone-green hover:bg-capstone-green-strong text-black border-2 border-solid border-black font-bold py-2 px-4 my-2 mx-2 rounded opacity-50
+}
+
+/* ========== LAYOUT ========== */
+
+.nav-header {
+  background-color: var(--capstone-blue);
+  border-bottom: 4px solid black;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.nav-header-text {
+  font-size: xxx-large;
+  font-weight: bold;
+  border-bottom: 12px solid black;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.nav-item {
+  font-size: x-large;
+  font-weight: bold;
+  margin: 15px 55px;
+}
+
+/* ========== HOME ========== */
+.home-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-content-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--capstone-blue);
+  border: 3px solid black;
+
+  width: 60%;
+  margin-top: 3%; 
+}
+
+.home-header-text {
+  font-size: xx-large;
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 12px solid black;
+
+  margin-top: 2%;
+}
+
+
+.home-body-text {
+  font-size: large;
+  text-align: center;
+  width: 60%;
+  padding: 5px;
+  margin: 10px 0px 30px 0px;
+}
+
+.home-login-btn {
+  @apply text-[x-large] font-bold mb-10 p-2.5 rounded-[10px] border-[5px] border-solid border-[black] bg-capstone-green hover:bg-capstone-green-strong;
+}
+
+
+/* ========== LOGIN/REGISTER ========== */
+
+.login-register-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-register-btn-row {
+  display: flex;
+  justify-content: center;
+}
+
+.login-register-form-container {
+  background-color: var(--capstone-blue);
+  border: 3px solid black;
+  border-radius: 5px;
+  width: fit-content;
+
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-form-label {
+  @apply block text-gray-700 text-sm font-bold mb-2
+}
+
+.login-form-field {
+  @apply bg-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight
+}
+
+.login-form-error-text {
+  color:red;
+  text-align: center;
+  font-size: large;
+}
