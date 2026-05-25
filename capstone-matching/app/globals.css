@@ -29,7 +29,7 @@ body {
 }
 
 .button {
-  @apply bg-capstone-green hover:bg-capstone-green-strong text-black border-2 border-solid border-black font-bold py-2 px-4 my-2 mx-2 rounded 
+  @apply bg-capstone-green hover:bg-capstone-green-strong text-black border-2 border-solid border-black font-bold py-2 px-4 my-2 mx-2 rounded
 }
 
 .button-disabled {
@@ -85,7 +85,7 @@ body {
   border: 3px solid black;
 
   width: 60%;
-  margin-top: 3%; 
+  margin-top: 3%;
 }
 
 .home-header-text {
@@ -113,7 +113,7 @@ body {
 
 /* ========== LOGIN/REGISTER ========== */
 
-.login-register-container{
+.login-register-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -131,7 +131,7 @@ body {
   border-radius: 5px;
   width: fit-content;
 
-  display:flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -146,7 +146,83 @@ body {
 }
 
 .login-form-error-text {
-  color:red;
+  color: red;
   text-align: center;
   font-size: large;
+}
+
+/* ========== STUDENT PROFILE ========== */
+.profile-page-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.profile-header-text {
+  font-size: xx-large;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 1%;
+}
+
+
+.profile-content-container {
+  background-color: var(--capstone-blue);
+  border: 2px solid black;
+  width: 75%;
+  margin-top: 1%;
+}
+
+.profile-content-lr {
+  display: flex;
+  flex-direction: row;  
+}
+
+.profile-content-left {
+  background-color: red;
+  flex-basis: 50%;
+}
+
+.profile-content-right {
+  background-color: blue;
+  flex-basis: 50%;
+}
+
+.profile-content-bottom {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-form-row {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 5px 10px 5px;
+}
+
+.profile-form-label {
+  color: gray;
+  font-size: small;
+  font-weight: bold;
+
+}
+
+.profile-form-field {
+  @apply bg-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight;
+}
+
+.progress-bar-container {
+  width: full;
+  height: 15px;
+  background-color: white;
+  border-radius: 15px;
+  margin:10px;
+}
+
+.progress-bar-value {
+  background-color: blue;
+  height: 15px;
+  width: 45%;
+  border-radius: 15px;
 }
