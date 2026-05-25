@@ -173,11 +173,18 @@ body {
   border: 2px solid black;
   width: 75%;
   margin-top: 1%;
+<<<<<<< HEAD
 }
 
 .profile-content-lr {
   display: flex;
   flex-direction: row;  
+=======
+
+  display: flex;
+  flex-direction: row;
+
+>>>>>>> b5e12b3712aa388a53fad337f3b95c82b1826789
 }
 
 .profile-content-left {
@@ -190,11 +197,14 @@ body {
   flex-basis: 50%;
 }
 
+<<<<<<< HEAD
 .profile-content-bottom {
   display: flex;
   flex-direction: column;
 }
 
+=======
+>>>>>>> b5e12b3712aa388a53fad337f3b95c82b1826789
 .profile-form-row {
   display: flex;
   flex-direction: column;
@@ -210,6 +220,7 @@ body {
 
 .profile-form-field {
   @apply bg-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight;
+<<<<<<< HEAD
 }
 
 .progress-bar-container {
@@ -225,4 +236,6 @@ body {
   height: 15px;
   width: 45%;
   border-radius: 15px;
+=======
+>>>>>>> b5e12b3712aa388a53fad337f3b95c82b1826789
 }

@@ -8,6 +8,7 @@ export default function Home() {
 
       <div className="profile-content-container">
 
+<<<<<<< HEAD
         <div className="profile-content-lr">
 
           <div className="profile-content-left">
@@ -88,6 +89,75 @@ export default function Home() {
           <button className="button">Save Changes</button>
         </div>
 
+=======
+        <div className="profile-content-left">
+
+          <div className="profile-form-row ">
+            <label className="profile-form-label">
+              Full Name:
+            </label>
+            <input
+              className="profile-form-field"
+              id="fullname"
+              type="text"
+              placeholder="Jane Doe">
+            </input>
+          </div>
+
+          <div className="profile-form-row ">
+            <label className="profile-form-label">
+              Program:
+            </label>
+            <input
+              className="profile-form-field"
+              id="program"
+              type="text"
+              placeholder="Bachelors of Engineering">
+            </input>
+          </div>
+
+          <div className="profile-form-row ">
+            <label className="profile-form-label">
+              Skills (comma seperated):
+            </label>
+            <input
+              className="profile-form-field"
+              id="skills"
+              type="text"
+              placeholder="Java, HTML, Python, ...">
+            </input>
+          </div>
+
+          <div className="profile-form-row ">
+            <label className="profile-form-label">
+              Skills (comma seperated):
+            </label>
+            <input
+              className="profile-form-field"
+              id="skills"
+              type="text"
+              placeholder="Java, HTML, Python, ...">
+            </input>
+          </div> 
+
+          <div className="profile-form-row ">
+            <label className="profile-form-label">
+              Bio:
+            </label>
+            <textarea
+              className="profile-form-field h-20"
+              id="skills"
+              type="text"
+              placeholder=" I am an experienced junior backend-engineer with specialisation for the spring framework...">
+            </textarea>
+          </div> 
+
+        </div>
+
+        <div className="profile-content-right">
+          test
+        </div>
+>>>>>>> b5e12b3712aa388a53fad337f3b95c82b1826789
       </div>
 
     </div>
