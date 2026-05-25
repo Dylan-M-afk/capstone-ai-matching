@@ -75,7 +75,39 @@ export default function Home() {
           </div>
 
           <div className="profile-content-right">
-            test
+
+            <div className="profile-form-row ">
+              <div className="profile-skills-label-row ">
+                <label className="profile-form-label w-140">
+                  Experience:
+                </label>
+                <label className="profile-form-label text-right">
+                  Years:
+                </label>
+              </div>
+
+
+
+              <div className="profile-skills-row ">
+                <input
+                  className="profile-skills-company-field w-140"
+                  id="fullname"
+                  type="text"
+                  placeholder="Generic Company LLC.">
+                </input>
+                <input
+                  className="profile-skills-date-field w-20"
+                  id="fullname"
+                  type="number"
+                  placeholder="2">
+                </input>
+
+
+              </div>
+
+
+            </div>
+
           </div>
 
         </div>

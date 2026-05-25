@@ -226,3 +226,22 @@ body {
   width: 45%;
   border-radius: 15px;
 }
+
+.profile-skills-label-row {
+  display: flex;
+  margin: 0px 5px 10px 5px;
+  /* justify-content: space-between; */
+}
+
+.profile-skills-row {
+  display: flex;
+  margin: 0px 5px 10px 5px;
+}
+
+.profile-skills-company-field {
+  @apply bg-white shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight;
+}
+
+.profile-skills-date-field {
+  @apply bg-white shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight;
+}
