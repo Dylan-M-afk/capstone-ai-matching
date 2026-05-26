@@ -4,12 +4,14 @@ export default function Home() {
   return (
     <div className="profile-page-container ">
 
+      {/* Header */}
       <p className="profile-header-text">Student Profile</p>
 
-      <div className="profile-content-container">
+      <form className="profile-content-container">
 
         <div className="profile-content-lr">
 
+          {/* Standard Fields */}
           <div className="profile-content-left">
 
             <div className="profile-form-row ">
@@ -19,6 +21,7 @@ export default function Home() {
               <input
                 className="profile-form-field"
                 id="fullname"
+                name="fullname"
                 type="text"
                 placeholder="Jane Doe">
               </input>
@@ -31,6 +34,7 @@ export default function Home() {
               <input
                 className="profile-form-field"
                 id="program"
+                name="program"
                 type="text"
                 placeholder="Bachelors of Engineering">
               </input>
@@ -43,6 +47,7 @@ export default function Home() {
               <input
                 className="profile-form-field"
                 id="skills"
+                name="skills"
                 type="text"
                 placeholder="Java, HTML, Python, ...">
               </input>
@@ -50,13 +55,14 @@ export default function Home() {
 
             <div className="profile-form-row ">
               <label className="profile-form-label">
-                Skills (comma seperated):
+                Availability:
               </label>
               <input
                 className="profile-form-field"
                 id="skills"
+                name="availability"
                 type="text"
-                placeholder="Java, HTML, Python, ...">
+                placeholder="Mon-Fri 9AM-5PM">
               </input>
             </div>
 
@@ -67,6 +73,7 @@ export default function Home() {
               <textarea
                 className="profile-form-field h-20"
                 id="skills"
+                name="bio"
                 type="text"
                 placeholder="I am an experienced junior backend-engineer with specialisation for the spring framework...">
               </textarea>
@@ -74,6 +81,7 @@ export default function Home() {
 
           </div>
 
+          {/* Skills */}
           <div className="profile-content-right">
 
             <div className="profile-form-row ">
@@ -85,8 +93,6 @@ export default function Home() {
                   Years:
                 </label>
               </div>
-
-
 
               <div className="profile-skills-row ">
                 <input
@@ -113,14 +119,16 @@ export default function Home() {
         </div>
 
         <div className="profile-content-bottom">
+          {/* Progress Bar */}
           <div className="progress-bar-container">
             <div className="progress-bar-value"></div>
           </div>
 
+          {/* Submit Button */}
           <button className="button">Save Changes</button>
         </div>
 
-      </div>
+      </form>
 
     </div>
   );
