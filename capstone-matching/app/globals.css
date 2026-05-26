@@ -239,11 +239,11 @@ body {
 }
 
 .profile-experience-company-field {
-  @apply bg-white shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight;
+  @apply bg-white shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight w-140 mr-3;
 }
 
 .profile-experience-date-field {
-  @apply bg-white shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight;
+  @apply bg-white shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight w-20;
 }
 
 .profile-add-experience-button {
@@ -269,7 +269,7 @@ body {
 }
 
 .experience-item-years {
-  text-align: center;
+  text-align: right;
   font-weight: bold;
 }
 

@@ -86,23 +86,23 @@ export default function Home() {
 
             <div className="profile-form-row ">
               <div className="profile-experience-label-row ">
-                <label className="profile-form-label w-140">
+                <label className="profile-form-label w-140 mr-3">
                   Experience:
                 </label>
-                <label className="profile-form-label text-right">
+                <label className="profile-form-label">
                   Years:
                 </label>
               </div>
 
               <div className="profile-experience-row ">
                 <input
-                  className="profile-experience-company-field w-140"
+                  className="profile-experience-company-field "
                   id="fullname"
                   type="text"
                   placeholder="Generic Company LLC.">
                 </input>
                 <input
-                  className="profile-experience-date-field w-20"
+                  className="profile-experience-date-field "
                   id="fullname"
                   type="number"
                   placeholder="2">
@@ -112,7 +112,7 @@ export default function Home() {
 
               {/* Experience List */}
               <div className="profile-experience-item-list">
-                <label className="profile-form-label w-140 ">
+                <label className="profile-form-label w-140 ml-1 ">
                   Experience Items:
                 </label>
 
