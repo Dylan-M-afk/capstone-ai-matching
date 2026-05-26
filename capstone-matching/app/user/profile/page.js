@@ -85,7 +85,7 @@ export default function Home() {
           <div className="profile-content-right">
 
             <div className="profile-form-row ">
-              <div className="profile-skills-label-row ">
+              <div className="profile-experience-label-row ">
                 <label className="profile-form-label w-140">
                   Experience:
                 </label>
@@ -94,30 +94,46 @@ export default function Home() {
                 </label>
               </div>
 
-              <div className="profile-skills-row ">
+              <div className="profile-experience-row ">
                 <input
-                  className="profile-skills-company-field w-140"
+                  className="profile-experience-company-field w-140"
                   id="fullname"
                   type="text"
                   placeholder="Generic Company LLC.">
                 </input>
                 <input
-                  className="profile-skills-date-field w-20"
+                  className="profile-experience-date-field w-20"
                   id="fullname"
                   type="number"
                   placeholder="2">
                 </input>
               </div>
-              <button className="profile-add-skill-button">Add Experience</button>
+              <button className="profile-add-experience-button">Add Experience</button>
 
-              <div className="profile-skill-item-container ">
-                <div className="skill-item">
-                  <p className="skill-item-text">ABC Corporation LTD. <span className="skill-item-years">- 3 Years</span></p>
+              {/* Experience List */}
+              <div className="profile-experience-item-list">
+                <label className="profile-form-label w-140 ">
+                  Experience Items:
+                </label>
+
+                <div className="profile-experience-item-container">
+                  <div className="experience-item">
+                    <p className="experience-item-text">ABC Corporation LTD. <span className="experience-item-years"> (3 Years)</span></p>
+                  </div>
+                  <button className="experience-item-delete">X</button>
                 </div>
-                <button className="skill-item-delete">X</button>
+
+                <div className="profile-experience-item-container">
+                  <div className="experience-item">
+                    <p className="experience-item-text">ABC Corporation LTD. <span className="experience-item-years"> (3 Years)</span></p>
+                  </div>
+                  <button className="experience-item-delete">X</button>
+                </div>
+
               </div>
 
-              
+
+
 
 
             </div>

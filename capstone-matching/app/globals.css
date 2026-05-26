@@ -181,12 +181,12 @@ body {
 }
 
 .profile-content-left {
-  background-color: red;
+  /* background-color: red; */
   flex-basis: 50%;
 }
 
 .profile-content-right {
-  background-color: blue;
+  /* background-color: blue; */
   flex-basis: 50%;
 }
 
@@ -227,46 +227,52 @@ body {
   border-radius: 15px;
 }
 
-.profile-skills-label-row {
+.profile-experience-label-row {
   display: flex;
-  margin: 0px 5px 10px 5px;
+  margin: 0px 5px 0px 5px;
   /* justify-content: space-between; */
 }
 
-.profile-skills-row {
+.profile-experience-row {
   display: flex;
   margin: 0px 5px 10px 5px;
 }
 
-.profile-skills-company-field {
+.profile-experience-company-field {
   @apply bg-white shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight;
 }
 
-.profile-skills-date-field {
+.profile-experience-date-field {
   @apply bg-white shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight;
 }
 
-.profile-add-skill-button {
+.profile-add-experience-button {
   @apply bg-capstone-green hover:bg-capstone-green-strong text-black border-2 border-solid border-black font-bold py-2 px-4 my-2 mx-1 rounded w-60
 }
 
-.profile-skill-item-container {
+.profile-experience-item-list {
+  /* margin: 0px 5px 10px 5px; */
+}
+
+.profile-experience-item-container {
   margin: 0px 5px 10px 5px;
   display: flex;
 }
 
-.skill-item {
-  @apply bg-white shadow appearance-none border rounded w-140 py-2 px-3 text-gray-700 leading-tight;
+.experience-item {
+  @apply bg-white shadow appearance-none border rounded w-fit py-2 px-3 mr-3 text-gray-700 leading-tight;
 }
 
-.skill-item-text {
-
+.experience-item-text {
+  text-align: left;
+  padding: 3px;
 }
 
-.skill-item-years {
-
+.experience-item-years {
+  text-align: center;
+  font-weight: bold;
 }
 
-.skill-item-delete {
+.experience-item-delete {
   @apply bg-white shadow appearance-none border rounded w-20 py-2 px-3 text-red-500 leading-tight hover:bg-red-500 hover:text-white;
 }
