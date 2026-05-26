@@ -107,9 +107,17 @@ export default function Home() {
                   type="number"
                   placeholder="2">
                 </input>
-
-
               </div>
+              <button className="profile-add-skill-button">Add Experience</button>
+
+              <div className="profile-skill-item-container ">
+                <div className="skill-item">
+                  <p className="skill-item-text">ABC Corporation LTD. <span className="skill-item-years">- 3 Years</span></p>
+                </div>
+                <button className="skill-item-delete">X</button>
+              </div>
+
+              
 
 
             </div>
