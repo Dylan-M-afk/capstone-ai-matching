@@ -23,6 +23,14 @@ export default function Home() {
     // setExpDate('');
   }
 
+  function deleteExpItem(i) {
+    console.log(expItems)
+    setExpItems(expItems => expItems.filter(
+      (_, idx) => i !== idx
+    ))
+    
+  }
+
   return (
     <div className="profile-page-container ">
 
@@ -156,7 +164,14 @@ export default function Home() {
                       <div className="experience-item">
                         <p className="experience-item-text">{entry.name} </p><span className="experience-item-years">({entry.years} Years)</span>
                       </div>
-                      <button className="experience-item-delete" type="button">X</button>
+                      <button
+                        id={i}
+                        className="experience-item-delete" 
+                        type="button"
+                        onClick={() => deleteExpItem(i)}
+                      >
+                          X
+                      </button>
                     </div>
 
                   ))
