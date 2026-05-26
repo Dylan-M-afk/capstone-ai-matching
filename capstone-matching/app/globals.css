@@ -199,6 +199,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 .profile-form-error-text {
@@ -221,6 +222,13 @@ body {
 
 .profile-form-field {
   @apply bg-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight;
+}
+
+.progress-bar-header {
+  color: gray;
+  font-size: small;
+  font-weight: bold;
+  margin-left: 3px
 }
 
 .progress-bar-container {

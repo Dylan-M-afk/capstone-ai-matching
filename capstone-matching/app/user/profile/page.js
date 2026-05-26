@@ -60,6 +60,11 @@ export default function Home() {
       return false;
     }
 
+    if(expItems.length <= 0) {
+      setError('Must include at least 1 experience item');
+      return false;
+    }
+
 
     setError('')
     return true;
@@ -235,6 +240,7 @@ export default function Home() {
 
         <div className="profile-content-bottom">
           {/* Progress Bar */}
+          <p className='progress-bar-header'>Student Profile Completion Progress: <span className='font-bold'>45%</span></p>
           <div className="progress-bar-container">
             <div className="progress-bar-value"></div>
           </div>
