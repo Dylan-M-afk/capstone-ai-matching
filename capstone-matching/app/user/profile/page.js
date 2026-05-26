@@ -1,30 +1,27 @@
-import Image from "next/image";
+'use client'
+
+import { useState } from 'react'
 
 export default function Home() {
 
-  let dummyData = [
-    {
-      "name": "ABC Company LTD.",
-      "years": 3
-    },
-    {
-      "name": "The Corporation with a Really Long Name Inc.",
-      "years": 12
-    },
-    {
-      "name": "METAL co.",
-      "years": 1
-    },
-    {
-      "name": "College of the North Atlantic Prince Phillip Drive",
-      "years": 1
-    },
-    {
-      "name": "College of the North Atlantic Prince Ridge Road Campus",
-      "years": 26
-    }
-  ]
+  const [expName, setExpName] = useState('');
+  const [expDate, setExpDate] = useState('');
+  const [expItems, setExpItems] = useState([])
 
+
+  function addExpItem() {
+    console.log("adding item")
+
+    // console.log(...expItems)
+    setExpItems(expItems => [...expItems, {
+      "name": expName,
+      "years": expDate
+    }])
+    console.log(expItems);
+
+    // setExpName('');
+    // setExpDate('');
+  }
 
   return (
     <div className="profile-page-container ">
@@ -109,6 +106,7 @@ export default function Home() {
           {/* Skills */}
           <div className="profile-content-right">
 
+            {/* Headers */}
             <div className="profile-form-row ">
               <div className="profile-experience-label-row ">
                 <label className="profile-form-label w-140 mr-3">
@@ -119,21 +117,32 @@ export default function Home() {
                 </label>
               </div>
 
+              {/* Input Fields */}
               <div className="profile-experience-row ">
                 <input
                   className="profile-experience-company-field "
                   id="fullname"
                   type="text"
-                  placeholder="Generic Company LLC.">
+                  placeholder="Generic Company LLC."
+                  onChange={(e) => setExpName(e.target.value)}
+                  >
                 </input>
                 <input
                   className="profile-experience-date-field "
                   id="fullname"
                   type="number"
-                  placeholder="2">
+                  placeholder="2"
+                  onChange={(e) => setExpDate(e.target.value)}
+                  >
                 </input>
               </div>
-              <button className="profile-add-experience-button" type="button">Add Experience</button>
+              <button 
+                className="profile-add-experience-button" 
+                type="button"
+                onClick={addExpItem}
+              >
+                  Add Experience
+              </button>
 
               {/* Experience List */}
               <div className="profile-experience-item-list">
@@ -142,14 +151,14 @@ export default function Home() {
                 </label>
 
                 {
-                  dummyData.map((entry, i) => (
+                  expItems.map((entry, i) => (
                     <div key={"entry" + i} className="profile-experience-item-container">
                       <div className="experience-item">
                         <p className="experience-item-text">{entry.name} </p><span className="experience-item-years">({entry.years} Years)</span>
                       </div>
                       <button className="experience-item-delete" type="button">X</button>
                     </div>
-                    
+
                   ))
                 }
 
