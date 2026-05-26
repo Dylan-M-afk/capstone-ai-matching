@@ -195,6 +195,17 @@ body {
   flex-direction: column;
 }
 
+.profile-form-error-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.profile-form-error-text {
+  color: red;
+  font-weight: bold;
+}
+
 .profile-form-row {
   display: flex;
   flex-direction: column;
@@ -276,3 +287,4 @@ body {
 .experience-item-delete {
   @apply bg-white shadow appearance-none border rounded w-20 py-2 px-3 text-red-500 leading-tight hover:bg-red-500 hover:text-white;
 }
+
