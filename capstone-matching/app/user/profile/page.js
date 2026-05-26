@@ -1,6 +1,31 @@
 import Image from "next/image";
 
 export default function Home() {
+
+  let dummyData = [
+    {
+      "name": "ABC Company LTD.",
+      "years": 3
+    },
+    {
+      "name": "The Corporation with a Really Long Name Inc.",
+      "years": 12
+    },
+    {
+      "name": "METAL co.",
+      "years": 1
+    },
+    {
+      "name": "College of the North Atlantic Prince Phillip Drive",
+      "years": 1
+    },
+    {
+      "name": "College of the North Atlantic Prince Ridge Road Campus",
+      "years": 26
+    }
+  ]
+
+
   return (
     <div className="profile-page-container ">
 
@@ -108,7 +133,7 @@ export default function Home() {
                   placeholder="2">
                 </input>
               </div>
-              <button className="profile-add-experience-button">Add Experience</button>
+              <button className="profile-add-experience-button" type="button">Add Experience</button>
 
               {/* Experience List */}
               <div className="profile-experience-item-list">
@@ -116,19 +141,17 @@ export default function Home() {
                   Experience Items:
                 </label>
 
-                <div className="profile-experience-item-container">
-                  <div className="experience-item">
-                    <p className="experience-item-text">ABC Corporation LTD. <span className="experience-item-years"> (3 Years)</span></p>
-                  </div>
-                  <button className="experience-item-delete">X</button>
-                </div>
-
-                <div className="profile-experience-item-container">
-                  <div className="experience-item">
-                    <p className="experience-item-text">ABC Corporation LTD. <span className="experience-item-years"> (3 Years)</span></p>
-                  </div>
-                  <button className="experience-item-delete">X</button>
-                </div>
+                {
+                  dummyData.map((entry, i) => (
+                    <div key={"entry" + i} className="profile-experience-item-container">
+                      <div className="experience-item">
+                        <p className="experience-item-text">{entry.name} </p><span className="experience-item-years">({entry.years} Years)</span>
+                      </div>
+                      <button className="experience-item-delete" type="button">X</button>
+                    </div>
+                    
+                  ))
+                }
 
               </div>
 
@@ -149,7 +172,7 @@ export default function Home() {
           </div>
 
           {/* Submit Button */}
-          <button className="button">Save Changes</button>
+          <button className="button" type="submit">Save Changes</button>
         </div>
 
       </form>
