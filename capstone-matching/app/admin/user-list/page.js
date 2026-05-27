@@ -10,16 +10,17 @@ export default function UserList() {
 
   useEffect(() => {
     async function fetchUsers() {
-      const { data:profile, error } = await supabase
-        .from('student_profiles')
-        .select('*')
+      const { data: users, error } = await supabase
+        .from('users')
+        .select("*")
 
       if (error) {
-        console.log(error)
+        console.error('Error fetching users:', error)
         return
       }
-      
-      setUsers(profile || [])
+
+      setUsers(users || [])
+      console.log(users)
     }
 
     fetchUsers()
@@ -41,9 +42,9 @@ export default function UserList() {
         <tbody>
           {users.map(user => (
             <tr key={user.student_id}>
-              <td>{user.student_id}</td>
-              <td>{user.name}</td>
-              <td>{user.program}</td>
+              <td key={user.student_id}>{user.id}</td>
+              <td key={user.student_id}>{user.role}</td>
+              {/* <td key={user.student_id}>{user.program}</td> */}
             </tr>
           ))}
         </tbody>
