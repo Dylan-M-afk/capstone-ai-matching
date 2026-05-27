@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, use } from 'react'
 
 export default function Home() {
 
@@ -17,7 +17,22 @@ export default function Home() {
   const [expItems, setExpItems] = useState([])
 
   // Validation
+  const [progress, setProgress] = useState(0);
   const [error, setError] = useState('');
+
+  // Dynamic Styling
+  let progressWidth = progress + "%";
+
+  useEffect(() => {
+    let progressFields = [fullname, program, skills, availability, bio, expItems]
+
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setProgress(Math.round(progressFields.filter(
+      (field) => {  
+        return field.length > 0
+      }
+  ).length * 16.66))
+  }, [fullname, program, skills, availability, bio, expItems])
 
 
   function addExpItem() {
@@ -240,9 +255,9 @@ export default function Home() {
 
         <div className="profile-content-bottom">
           {/* Progress Bar */}
-          <p className='progress-bar-header'>Student Profile Completion Progress: <span className='font-bold'>45%</span></p>
+          <p className='progress-bar-header'>Student Profile Completion Progress: <span className='font-bold'>{progress}%</span></p>
           <div className="progress-bar-container">
-            <div className="progress-bar-value"></div>
+            <div className="progress-bar-value" style={{width: progressWidth}}></div>
           </div>
 
           {error != '' && 
