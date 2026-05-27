@@ -12,17 +12,17 @@ export default function Home() {
           </button>
         </Link>
 
-        {/* <Link href="/company-list"> */}
+        <Link href="company-list">
           <button className="button">
             Company List
           </button>
-        {/* </Link> */}
+        </Link>
 
-        {/* <Link href="/account-management"> */}
+        <Link href="account-management">
           <button className="button">
             Account Management
           </button>
-        {/* </Link> */}
+        </Link>
 
       </div>
     </div>

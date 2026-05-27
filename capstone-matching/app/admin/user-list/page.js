@@ -10,45 +10,24 @@ export default function UserList() {
 
   useEffect(() => {
     async function fetchUsers() {
-      const { data, error } = await supabase
-        .from('public.users')
+      const { data:profile, error } = await supabase
+        .from('student_profiles')
         .select('*')
 
       if (error) {
         console.log(error)
         return
       }
-      console.log(data)
-      setUsers(data || [])
+      
+      setUsers(profile || [])
     }
 
     fetchUsers()
   }, [])
 
-  // async function deactivateUser(userId) {
-  //   const { error } = await supabase
-  //     .from('users')
-  //     .update({ status: 'inactive' })
-  //     .eq('id', userId)
-
-  //   if (error) {
-  //     console.log(error)
-  //     return
-  //   }
-
-  //   // update UI after change
-  //   setUsers(prev =>
-  //     prev.map(user =>
-  //       user.id === userId
-  //         ? { ...user, status: 'inactive' }
-  //         : user
-  //     )
-  //   )
-  // }
-
   return (
     <div>
-      <h2>System Users</h2>
+      <h2>Student Users</h2>
 
       <table border="1" cellPadding="10">
         <thead>
@@ -61,10 +40,10 @@ export default function UserList() {
 
         <tbody>
           {users.map(user => (
-            <tr key={user.id}>
-              <td>{user.id}</td>
-              <td>{user.role}</td>
-              <td>{user.status}</td>
+            <tr key={user.student_id}>
+              <td>{user.student_id}</td>
+              <td>{user.name}</td>
+              <td>{user.program}</td>
             </tr>
           ))}
         </tbody>

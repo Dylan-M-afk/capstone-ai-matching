@@ -25,27 +25,6 @@ export default function CompanyList() {
     fetchCompanies()
   }, [])
 
-  // async function deactivateUser(userId) {
-  //   const { error } = await supabase
-  //     .from('users')
-  //     .update({ status: 'inactive' })
-  //     .eq('id', userId)
-
-  //   if (error) {
-  //     console.log(error)
-  //     return
-  //   }
-
-  //   // update UI after change
-  //   setUsers(prev =>
-  //     prev.map(user =>
-  //       user.id === userId
-  //         ? { ...user, status: 'inactive' }
-  //         : user
-  //     )
-  //   )
-  // }
-
   return (
     <div>
       <h2>System Company Register</h2>
