@@ -150,3 +150,77 @@ body {
   text-align: center;
   font-size: large;
 }
+
+/* ========== ADMIN ========== */
+
+.table-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.system-table {
+  width: 85%;
+  border-collapse: collapse;
+  background-color: white;
+  border: 3px solid black;
+  font-size: large;
+}
+
+.system-table thead {
+  background-color: var(--capstone-blue);
+  border-bottom: 4px solid black;
+}
+
+.system-table th {
+  padding: 14px;
+  text-align: left;
+  font-size: large;
+  font-weight: bold;
+  border-right: 2px solid black;
+}
+
+.system-table th:last-child {
+  border-right: none;
+}
+
+.system-table td {
+  padding: 12px;
+  border-top: 2px solid black;
+  border-right: 2px solid black;
+}
+
+.system-table td:last-child {
+  border-right: none;
+}
+
+.system-table tbody tr:nth-child(even) {
+  background-color: #f7f7f7;
+}
+
+.system-table tbody tr:hover {
+  background-color: var(--capstone-green);
+  transition: 0.2s ease-in-out;
+}
+
+.table-title {
+  text-align: center;
+  font-size: xx-large;
+  font-weight: bold;
+  margin-top: 2rem;
+  border-bottom: 8px solid black;
+  display: inline-block;
+  padding-bottom: 0.25rem;
+}
+
+.table-container-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.table-action-btn {
+  @apply bg-capstone-green hover:bg-capstone-green-strong 
+  text-black border-2 border-solid border-black 
+  font-bold py-1 px-3 rounded;
+}

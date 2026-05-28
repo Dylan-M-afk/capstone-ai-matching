@@ -1,80 +1,125 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { createClient } from '@/utils/supabase/client'
+import { useState } from 'react'
+import { createCompany } from './action'
 
-export default function UserList() {
-  const [users, setUsers] = useState([])
+export default function CompanyPage() {
 
-  const supabase = createClient()
+  const [companyName, setCompanyName] = useState('')
+  const [contactPerson, setContactPerson] = useState('')
+  const [accessCode, setAccessCode] = useState('')
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
 
-  useEffect(() => {
-    async function fetchUsers() {
-      let { data: users, error } = await supabase
-        .from('users')
-        .select('uuid, role, status, created_at')
+  function generateCode() {
+    const code = Math.random().toString(36).substring(2, 10).toUpperCase()
+    setAccessCode(code)
+    return code
+  }
 
-      if (error) {
-        console.log(error)
-        return
-      }
-      console.log(users)
-      setUsers(users || [])
+  async function handleSubmit(e) {
+    e.preventDefault()
+    setError('')
+    setLoading(true)
+
+    try {
+      const result = await createCompany({
+        companyName,
+        contactPerson,
+        accessCode: accessCode || generateCode()
+      })
+
+      if (result?.error) throw new Error(result.error)
+
+      setCompanyName('')
+      setContactPerson('')
+      setAccessCode('')
+
+      alert('Company created!')
+
+    } catch (err) {
+      setError(err.message)
     }
 
-    fetchUsers()
-  }, [])
-
-  async function deactivateUser(userUuid) {
-    const { error } = await supabase
-      .from('users')
-      .update({ status: 'inactive' })
-      .eq('uuid', userUuid)
-
-    if (error) {
-      console.log(error)
-      return
-    }
-
-    // update UI instantly
-    setUsers(prev =>
-      prev.map(user =>
-        user.uuid === userUuid
-          ? { ...user, status: 'inactive' }
-          : user
-      )
-    )
+    setLoading(false)
   }
 
   return (
-    <div>
-      <h2>System Users</h2>
+    <div className="profile-page-container">
 
-      <table border="1" cellPadding="10">
-        <thead>
-          <tr>
-            <th>UUID</th>
-            <th>Role</th>
-            <th>Status</th>
-            <th>Action</th>
-          </tr>
-        </thead>
+      <p className="profile-header-text">Create Company</p>
 
-        <tbody>
-          {users.map(user => (
-            <tr key={user.uuid}>
-              <td>{user.uuid}</td>
-              <td>{user.role}</td>
-              <td>{user.status}</td>
-              <td>
-                <button onClick={() => deactivateUser(user.uuid)}>
-                  Deactivate
+      <form className="profile-content-container" onSubmit={handleSubmit}>
+
+        <div className="profile-content-lr">
+
+          <div className="profile-content-left">
+
+            <div className="profile-form-row">
+              <label className="profile-form-label">Company Name:</label>
+              <input
+                className="profile-form-field"
+                value={companyName}
+                onChange={(e) => setCompanyName(e.target.value)}
+              />
+            </div>
+
+            <div className="profile-form-row">
+              <label className="profile-form-label">Contact Person:</label>
+              <input
+                className="profile-form-field"
+                value={contactPerson}
+                onChange={(e) => setContactPerson(e.target.value)}
+              />
+            </div>
+
+          </div>
+
+          <div className="profile-content-right">
+
+            <div className="profile-form-row">
+              <label className="profile-form-label">Access Code:</label>
+
+              <div className="profile-experience-row">
+
+                <input
+                  className="profile-experience-company-field"
+                  value={accessCode}
+                  readOnly
+                />
+
+                <button
+                  type="button"
+                  className="profile-add-experience-button"
+                  onClick={generateCode}
+                >
+                  Generate
                 </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div className="profile-content-bottom">
+
+          {error && (
+            <div className="profile-form-error-container">
+              <p className="profile-form-error-text">{error}</p>
+            </div>
+          )}
+
+          <button className="button" type="submit" disabled={loading}>
+            {loading ? 'Creating...' : 'Create Company'}
+          </button>
+
+        </div>
+
+      </form>
+
     </div>
   )
 }
