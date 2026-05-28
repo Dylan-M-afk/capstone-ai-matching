@@ -13,6 +13,7 @@ export default function UserList() {
       const { data: users, error } = await supabase
         .from('users')
         .select("*")
+        .neq('role', 'company')
 
       if (error) {
         console.error('Error fetching users:', error)

@@ -11,8 +11,9 @@ export default function CompanyList() {
   useEffect(() => {
     async function fetchCompanies() {
       const { data, error } = await supabase
-        .from('companies')
-        .select('company_id, company_name, contact_person, access_code, status')
+        .from('users')
+        .select("*")
+        .eq('role', 'company')
 
       if (error) {
         console.log(error)
@@ -46,28 +47,28 @@ export default function CompanyList() {
     )
   }
 
-  return (
+ return (
     <div className='table-container'>
       <table border="1" cellPadding="10" className='system-table'>
         <thead>
           <tr>
             <th>ID</th>
-            <th>Business Name</th>
-            <th>Primary Contact</th>
-            <th>Access Code</th>
-            <th>System Status</th>
+            <th>Role</th>
+            
+            <th>Status</th>
+            <th>Action</th>
           </tr>
         </thead>
 
         <tbody>
-          {companies.map(company => (
-            <tr key={company.company_id}>
-              <td>{company.company_id}</td>
-              <td>{company.company_name}</td>
-              <td>{company.contact_person}</td>
-              <td>{company.access_code}</td>
-              <td>{company.status}</td>
-              <td>
+          {companies.map(user => (
+            <tr key={user.id}>
+              <td>{user.id}</td>
+              <td>{user.role}</td>
+              
+              <td>{user.status}</td>
+              {/* <td key={user.student_id}>{user.program}</td> */}
+                <td>
                 <button className='button' onClick={() => deactivateUser(user.id)}>
                   Deactivate
                 </button>
