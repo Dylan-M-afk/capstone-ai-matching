@@ -1,6 +1,8 @@
 'use client'
 
-import { useState, useEffect, use } from 'react'
+import { useState, useEffect } from 'react'
+import { createClient } from '@/utils/supabase/client'
+const supabase = createClient()
 
 export default function Home() {
 
@@ -17,22 +19,63 @@ export default function Home() {
   const [expItems, setExpItems] = useState([])
 
   // Validation
-  const [progress, setProgress] = useState(0);
+  // const [progress, setProgress] = useState(0);
   const [error, setError] = useState('');
 
   // Dynamic Styling
+  const progress = Math.round(
+    [fullname, program, skills, availability, bio, expItems]
+      .filter(field => field.length > 0)
+      .length * 16.66
+  )
   let progressWidth = progress + "%";
 
   useEffect(() => {
-    let progressFields = [fullname, program, skills, availability, bio, expItems]
+    async function fetchStudentProfile() {
+      // Get auth data
+      const { data: { user }, error: authError } = await supabase.auth.getUser()
 
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setProgress(Math.round(progressFields.filter(
-      (field) => {  
-        return field.length > 0
+      if (authError || !user) {
+        console.error('Error fetching user:', authError)
+        return
       }
-  ).length * 16.66))
-  }, [fullname, program, skills, availability, bio, expItems])
+
+      // Get student profile associated with auth account
+      const { data: profile, error: profileError } = await supabase
+        .from('student_profiles')
+        .select('*')
+        .eq('id', user.id)
+        .single()
+
+      if (profileError) {
+        console.error('Error fetching profile:', profileError)
+        return
+      }
+
+      console.log('Student Profile:', profile)
+
+      // Populate fields with existing profile data
+      if (profile) {
+        setFullName(profile.name ?? '')
+        setProgram(profile.program ?? '')
+        setSkills(profile.skills ?? '')
+        setAvailability(profile.availability ?? '')
+        setBio(profile.bio ?? '')
+
+        // Each entry in the experience array becomes an experience item on the page
+        const experienceItems = profile.experience.map((item) => {
+          const expParts = item.split(",")
+          return {
+            name: expParts[0].trim(),
+            years: expParts[1].trim()
+          }
+        })
+        setExpItems(experienceItems)
+      }
+    }
+
+    fetchStudentProfile()
+  }, [])
 
 
   function addExpItem() {
@@ -46,11 +89,7 @@ export default function Home() {
 
   function deleteExpItem(i) {
     console.log("deleting item at index" + i)
-
-    setExpItems(expItems => expItems.filter(
-      (_, idx) => i !== idx
-    ))
-
+    setExpItems(expItems => expItems.filter((_, idx) => i !== idx))
   }
 
   function validate() {
@@ -75,11 +114,10 @@ export default function Home() {
       return false;
     }
 
-    if(expItems.length <= 0) {
+    if (expItems.length <= 0) {
       setError('Must include at least 1 experience item');
       return false;
     }
-
 
     setError('')
     return true;
@@ -108,6 +146,7 @@ export default function Home() {
                 name="fullname"
                 type="text"
                 placeholder="Jane Doe"
+                value={fullname || ''}
                 onChange={e => setFullName(e.target.value)}
               >
               </input>
@@ -123,6 +162,7 @@ export default function Home() {
                 name="program"
                 type="text"
                 placeholder="Bachelors of Engineering"
+                value={program || ''}
                 onChange={e => setProgram(e.target.value)}
               >
               </input>
@@ -138,6 +178,7 @@ export default function Home() {
                 name="skills"
                 type="text"
                 placeholder="Java, HTML, Python, ..."
+                value={skills || ''}
                 onChange={e => setSkills(e.target.value)}
               >
               </input>
@@ -153,6 +194,7 @@ export default function Home() {
                 name="availability"
                 type="text"
                 placeholder="Mon-Fri 9AM-5PM"
+                value={availability || ''}
                 onChange={e => setAvailability(e.target.value)}
               >
               </input>
@@ -168,6 +210,7 @@ export default function Home() {
                 name="bio"
                 type="text"
                 placeholder="I am an experienced junior backend-engineer with specialisation for the spring framework..."
+                value={bio || ''}
                 onChange={e => setBio(e.target.value)}
               >
               </textarea>
@@ -257,10 +300,10 @@ export default function Home() {
           {/* Progress Bar */}
           <p className='progress-bar-header'>Student Profile Completion Progress: <span className='font-bold'>{progress}%</span></p>
           <div className="progress-bar-container">
-            <div className="progress-bar-value" style={{width: progressWidth}}></div>
+            <div className="progress-bar-value" style={{ width: progressWidth }}></div>
           </div>
 
-          {error != '' && 
+          {error != '' &&
             <div className='profile-form-error-container'>
               <p className='profile-form-error-text'>Error: {error}</p>
             </div>}
