@@ -45,56 +45,72 @@ export default function CompanyPage() {
   }
 
   return (
-    <div className="profile-page-container">
+    <div className="flex justify-center mt-10">
 
-      <p className="profile-header-text">Create Company</p>
+      <div className="w-[70%] bg-capstone-blue border-[3px] border-black rounded p-8">
 
-      <form className="profile-content-container" onSubmit={handleSubmit}>
+        <p className="text-4xl font-bold border-b-[10px] border-black inline-block mb-8">
+          Create Company
+        </p>
 
-        <div className="profile-content-lr">
+        <form onSubmit={handleSubmit}>
 
-          <div className="profile-content-left">
+          <div className="flex justify-between gap-10 flex-wrap">
 
-            <div className="profile-form-row">
-              <label className="profile-form-label">Company Name:</label>
-              <input
-                className="profile-form-field"
-                value={companyName}
-                onChange={(e) => setCompanyName(e.target.value)}
-              />
-            </div>
+            {/* LEFT SIDE */}
+            <div className="flex-1 min-w-[300px]">
 
-            <div className="profile-form-row">
-              <label className="profile-form-label">Contact Person:</label>
-              <input
-                className="profile-form-field"
-                value={contactPerson}
-                onChange={(e) => setContactPerson(e.target.value)}
-              />
-            </div>
-
-          </div>
-
-          <div className="profile-content-right">
-
-            <div className="profile-form-row">
-              <label className="profile-form-label">Access Code:</label>
-
-              <div className="profile-experience-row">
+              <div className="mb-6">
+                <label className="block text-lg font-bold mb-2">
+                  Company Name:
+                </label>
 
                 <input
-                  className="profile-experience-company-field"
-                  value={accessCode}
-                  readOnly
+                  className="w-full bg-white border-2 border-black rounded px-3 py-2"
+                  value={companyName}
+                  onChange={(e) => setCompanyName(e.target.value)}
                 />
+              </div>
 
-                <button
-                  type="button"
-                  className="profile-add-experience-button"
-                  onClick={generateCode}
-                >
-                  Generate
-                </button>
+              <div className="mb-6">
+                <label className="block text-lg font-bold mb-2">
+                  Contact Person:
+                </label>
+
+                <input
+                  className="w-full bg-white border-2 border-black rounded px-3 py-2"
+                  value={contactPerson}
+                  onChange={(e) => setContactPerson(e.target.value)}
+                />
+              </div>
+
+            </div>
+
+            {/* RIGHT SIDE */}
+            <div className="flex-1 min-w-[300px]">
+
+              <div className="mb-6">
+                <label className="block text-lg font-bold mb-2">
+                  Access Code:
+                </label>
+
+                <div className="flex gap-3">
+
+                  <input
+                    className="flex-1 bg-gray-100 border-2 border-black rounded px-3 py-2"
+                    value={accessCode}
+                    readOnly
+                  />
+
+                  <button
+                    type="button"
+                    onClick={generateCode}
+                    className="bg-capstone-green hover:bg-capstone-green-strong border-2 border-black rounded px-4 py-2 font-bold"
+                  >
+                    Generate
+                  </button>
+
+                </div>
 
               </div>
 
@@ -102,23 +118,30 @@ export default function CompanyPage() {
 
           </div>
 
-        </div>
+          {/* BOTTOM */}
+          <div className="flex flex-col items-center mt-6">
 
-        <div className="profile-content-bottom">
+            {error && (
+              <div className="mb-4">
+                <p className="text-red-600 font-bold text-lg">
+                  {error}
+                </p>
+              </div>
+            )}
 
-          {error && (
-            <div className="profile-form-error-container">
-              <p className="profile-form-error-text">{error}</p>
-            </div>
-          )}
+            <button
+              className="bg-capstone-green hover:bg-capstone-green-strong border-2 border-black rounded px-6 py-3 font-bold text-lg disabled:opacity-50"
+              type="submit"
+              disabled={loading}
+            >
+              {loading ? 'Creating...' : 'Create Company'}
+            </button>
 
-          <button className="button" type="submit" disabled={loading}>
-            {loading ? 'Creating...' : 'Create Company'}
-          </button>
+          </div>
 
-        </div>
+        </form>
 
-      </form>
+      </div>
 
     </div>
   )
