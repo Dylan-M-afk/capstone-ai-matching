@@ -48,8 +48,6 @@ export default function CompanyList() {
 
   return (
     <div className='table-container'>
-      <h2>System Company Register</h2>
-
       <table border="1" cellPadding="10" className='system-table'>
         <thead>
           <tr>

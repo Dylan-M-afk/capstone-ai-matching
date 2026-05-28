@@ -48,14 +48,14 @@ export default function UserList() {
 
   return (
     <div className='table-container'>
-      <h2>Student Users</h2>
-
       <table border="1" cellPadding="10" className='system-table'>
         <thead>
           <tr>
             <th>ID</th>
             <th>Role</th>
+            
             <th>Status</th>
+            <th>Action</th>
           </tr>
         </thead>
 
@@ -64,6 +64,7 @@ export default function UserList() {
             <tr key={user.id}>
               <td>{user.id}</td>
               <td>{user.role}</td>
+              
               <td>{user.status}</td>
               {/* <td key={user.student_id}>{user.program}</td> */}
                 <td>
