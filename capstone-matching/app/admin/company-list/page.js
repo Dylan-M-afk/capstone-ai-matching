@@ -19,7 +19,6 @@ export default function CompanyList() {
         console.log(error)
         return
       }
-      console.log(data)
       setCompanies(data || [])
     }
 
@@ -29,16 +28,17 @@ export default function CompanyList() {
   async function deactivateUser(userId) {
     const { error } = await supabase
       .from('users')
-      .update({ status: 'inactive' })
+      .update({ status: 'Inactive' })
       .eq('id', userId)
 
+    console.log("test")
     if (error) {
       console.log(error)
       return
     }
 
     // update UI instantly
-    setUsers(prev =>
+    setCompanies(prev =>
       prev.map(user =>
         user.id === userId
           ? { ...user, status: 'inactive' }

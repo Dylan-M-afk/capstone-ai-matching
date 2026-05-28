@@ -29,7 +29,7 @@ export default function UserList() {
     async function deactivateUser(userId) {
     const { error } = await supabase
       .from('users')
-      .update({ status: 'inactive' })
+      .update({ status: 'Inactive' })
       .eq('id', userId)
 
     if (error) {
