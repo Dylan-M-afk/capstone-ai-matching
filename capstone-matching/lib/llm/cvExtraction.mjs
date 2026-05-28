@@ -23,11 +23,13 @@ Extract this CV into JSON:
   "name": "",
   "email": "",
   "phone": "",
-  "education": "",
+  "program": "",
   "skills": [],
-  "experience": [],
+  "experience": "",
+  "education": "",
   "availability": "",
-  "preferred_job_type": ""
+  "preferred_job_type": "",
+  "bio": ""
 }
 
 Rules:
