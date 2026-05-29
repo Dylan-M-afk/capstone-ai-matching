@@ -16,7 +16,8 @@ export default function Home() {
   // Experience List logic
   const [expName, setExpName] = useState('');
   const [expDate, setExpDate] = useState('');
-  const [expItems, setExpItems] = useState([])
+  const [expItems, setExpItems] = useState([]);
+  const [expError, setExpError] = useState('');
 
   // Validation
   const [error, setError] = useState('');
@@ -52,11 +53,10 @@ export default function Home() {
         return
       }
 
-      console.log('Student Profile:', profile)
+      // console.log('Student Profile:', profile)
 
       // Populate fields with existing profile data
       if (profile) {
-        console.log(profile.skills)
         setFullName(profile.name ?? '')
         setProgram(profile.program ?? '')
         setSkills(profile.skills.toString() ?? '')
@@ -65,14 +65,8 @@ export default function Home() {
 
         // Each entry in the experience array becomes an experience item on the page
         if (profile.experience) {
-                  const experienceItems = profile.experience.map((item) => {
-          const expParts = item.split(",")
-          return {
-            name: expParts[0].trim(),
-            years: expParts[1].trim()
-          }
-        })
-        setExpItems(experienceItems)
+          const experienceItems = profile.experience.map((item) => JSON.parse(item))
+          setExpItems(experienceItems)
         }
       }
     }
@@ -82,17 +76,37 @@ export default function Home() {
 
 
   function addExpItem() {
-    console.log("adding item")
+    if (valExpItem()) {
+      console.log("adding item")
 
-    setExpItems(expItems => [...expItems, {
-      "name": expName,
-      "years": expDate
-    }])
+      setExpItems(expItems => [...expItems, {
+        "name": expName,
+        "years": expDate
+      }])
+    }
   }
 
   function deleteExpItem(i) {
     console.log("deleting item at index" + i)
     setExpItems(expItems => expItems.filter((_, idx) => i !== idx))
+  }
+
+  function valExpItem() {
+    if (expName == '') {
+      setExpError('Experience Name must not be blank')
+      return false;
+    }
+    if (expDate == '') {
+      setExpError('Years must not be blank')
+      return false;
+    }
+    if (expDate <= 0) {
+      setExpError('Years must be greater than 0')
+      return false;
+    }
+
+    setExpError('');
+    return true;
   }
 
   function validate() {
@@ -132,16 +146,14 @@ export default function Home() {
     setError('');
 
     const { data: { user }, error: authError } = await supabase.auth.getUser()
-    
+
     const { data: profile, error: profileError } = await supabase
       .from('student_profiles')
       .update({
         name: fullname,
         program: program,
         skills: skills.split(",").map(s => s.trim()),
-        experience: expItems.map((item) => {
-          return item.name + "," + item.years
-        }),
+        experience: expItems.map((item) => JSON.stringify(item)),
         bio: bio,
         availability: availability
       })
@@ -276,11 +288,16 @@ export default function Home() {
                   className="profile-experience-date-field "
                   id="fullname"
                   type="number"
+                  step="0.25"
                   placeholder="2"
                   onChange={(e) => setExpDate(e.target.value)}
                 >
                 </input>
               </div>
+              {expError != '' &&
+                <div className='profile-form-error-container'>
+                  <p className='profile-form-error-text'>Error: {expError}</p>
+                </div>}
               <button
                 className="profile-add-experience-button"
                 type="button"
