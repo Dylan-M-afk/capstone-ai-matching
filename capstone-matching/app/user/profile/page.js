@@ -44,7 +44,7 @@ export default function Home() {
       const { data: profile, error: profileError } = await supabase
         .from('student_profiles')
         .select('*')
-        .eq('id', user.id)
+        .eq('student_id', user.id)
         .single()
 
       if (profileError) {
@@ -64,7 +64,8 @@ export default function Home() {
         setBio(profile.bio ?? '')
 
         // Each entry in the experience array becomes an experience item on the page
-        const experienceItems = profile.experience.map((item) => {
+        if (profile.experience) {
+                  const experienceItems = profile.experience.map((item) => {
           const expParts = item.split(",")
           return {
             name: expParts[0].trim(),
@@ -72,6 +73,7 @@ export default function Home() {
           }
         })
         setExpItems(experienceItems)
+        }
       }
     }
 
@@ -130,14 +132,7 @@ export default function Home() {
     setError('');
 
     const { data: { user }, error: authError } = await supabase.auth.getUser()
-
-    console.log(skills)
-    console.log(expItems.map((item) => {
-          return item.name + "," + item.years
-        }))
-
     
-
     const { data: profile, error: profileError } = await supabase
       .from('student_profiles')
       .update({
@@ -150,7 +145,7 @@ export default function Home() {
         bio: bio,
         availability: availability
       })
-      .eq('id', user.id)
+      .eq('student_id', user.id)
 
     if (profileError) {
       console.error('Error updating profile:', profileError)
