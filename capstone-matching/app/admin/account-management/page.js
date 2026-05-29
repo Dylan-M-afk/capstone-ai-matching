@@ -7,6 +7,7 @@ export default function CompanyPage() {
 
   const [companyName, setCompanyName] = useState('')
   const [contactPerson, setContactPerson] = useState('')
+  const [email, setEmail] = useState('')
   const [accessCode, setAccessCode] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
@@ -26,6 +27,7 @@ export default function CompanyPage() {
       const result = await createCompany({
         companyName,
         contactPerson,
+        email,
         accessCode: accessCode || generateCode()
       })
 
@@ -33,6 +35,7 @@ export default function CompanyPage() {
 
       setCompanyName('')
       setContactPerson('')
+      setEmail('')
       setAccessCode('')
 
       alert('Company created!')
@@ -81,6 +84,19 @@ export default function CompanyPage() {
                   className="w-full bg-white border-2 border-black rounded px-3 py-2"
                   value={contactPerson}
                   onChange={(e) => setContactPerson(e.target.value)}
+                />
+              </div>
+
+              <div className="mb-6">
+                <label className="block text-lg font-bold mb-2">
+                  Email:
+                </label>
+
+                <input
+                  type="email"
+                  className="w-full bg-white border-2 border-black rounded px-3 py-2"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
 
