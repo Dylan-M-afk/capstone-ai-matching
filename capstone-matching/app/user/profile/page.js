@@ -19,7 +19,6 @@ export default function Home() {
   const [expItems, setExpItems] = useState([])
 
   // Validation
-  // const [progress, setProgress] = useState(0);
   const [error, setError] = useState('');
 
   // Dynamic Styling
@@ -30,6 +29,7 @@ export default function Home() {
   )
   let progressWidth = progress + "%";
 
+  // On Initial Page Load
   useEffect(() => {
     async function fetchStudentProfile() {
       // Get auth data
@@ -56,9 +56,10 @@ export default function Home() {
 
       // Populate fields with existing profile data
       if (profile) {
+        console.log(profile.skills)
         setFullName(profile.name ?? '')
         setProgram(profile.program ?? '')
-        setSkills(profile.skills ?? '')
+        setSkills(profile.skills.toString() ?? '')
         setAvailability(profile.availability ?? '')
         setBio(profile.bio ?? '')
 
@@ -123,13 +124,47 @@ export default function Home() {
     return true;
   }
 
+  // Submit form to update student profile with data in fields
+  async function handleUpdate(e) {
+    console.log("Updating Profile")
+    setError('');
+
+    const { data: { user }, error: authError } = await supabase.auth.getUser()
+
+    console.log(skills)
+    console.log(expItems.map((item) => {
+          return item.name + "," + item.years
+        }))
+
+    
+
+    const { data: profile, error: profileError } = await supabase
+      .from('student_profiles')
+      .update({
+        name: fullname,
+        program: program,
+        skills: skills.split(",").map(s => s.trim()),
+        experience: expItems.map((item) => {
+          return item.name + "," + item.years
+        }),
+        bio: bio,
+        availability: availability
+      })
+      .eq('id', user.id)
+
+    if (profileError) {
+      console.error('Error updating profile:', profileError)
+      return
+    }
+  }
+
   return (
     <div className="profile-page-container ">
 
       {/* Header */}
       <p className="profile-header-text">Student Profile</p>
 
-      <form action="ADD ME" onSubmit={(e) => { if (!validate()) e.preventDefault() }} className="profile-content-container">
+      <form action={handleUpdate} onSubmit={(e) => { if (!validate()) e.preventDefault() }} className="profile-content-container">
 
         <div className="profile-content-lr">
 
