@@ -162,6 +162,8 @@ export default function Home() {
     if (profileError) {
       console.error('Error updating profile:', profileError)
       return
+    } else{
+      alert("Profile Successfully Updated")
     }
   }
 
