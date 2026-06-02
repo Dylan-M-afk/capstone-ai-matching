@@ -373,4 +373,45 @@ body {
   @apply bg-white shadow appearance-none border rounded w-20 py-2 px-3 text-red-500 leading-tight hover:bg-red-500 hover:text-white;
 }
 
+/* ========== STUDENT JOB BOARD ========== */
+.sjb-page-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
+.sjb-header-text {
+  font-size: xx-large;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 1%;
+}
+
+.sjb-job-list-container{
+  width: 75%;
+}
+
+.sjb-job-item-container{
+  background-color: var(--capstone-blue);
+  border: 2px solid black;
+  border-radius: 5px;
+  width: 100%;
+  height: fit-content;
+  margin-top: 1%;
+}
+
+.sbj-job-item-top-container {
+  /* background-color: red; */
+  height: 50px;
+  border-bottom: 2px solid black;
+}
+
+.sbj-job-item-top-container-hover {
+  @apply hover:bg-capstone-green-strong rounded
+}
+
+.sbj-job-item-bottom-container {
+  /* background-color: blue; */
+  height: 150px;
+}
