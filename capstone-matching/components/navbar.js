@@ -13,6 +13,7 @@ export default function NavBar({ role }) {
         { "name": "Home", "href": "/" },
         { "name": "Student Dashboard", "href": "/user/dashboard" },
         { "name": "Student Profile", "href": "/user/profile" },
+        { "name": "Job Board", "href": "/user/jobBoard"}
     ]
 
     let companyLocations = [
