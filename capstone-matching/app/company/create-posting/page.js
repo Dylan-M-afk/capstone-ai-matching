@@ -83,7 +83,7 @@ export default function JobPostCreate() {
 
     const { data: company } = await supabase
       .from('companies')
-      .select('id')
+      .select('id, company_id')
       .eq('company_id', user.id)
       .single()
 
@@ -92,7 +92,7 @@ export default function JobPostCreate() {
     const { error: insertError } = await supabase
       .from('job_posts')
       .insert([{
-        company_id: company.id,
+        company_id: company.company_id,
         title,
         description,
         location,
