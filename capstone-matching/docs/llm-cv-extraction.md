@@ -11,7 +11,7 @@ npm install
 The PDF extraction test requires:
 
 ```text
-pdf-parse@1.1.1
+pdf2json
 ```
 
 This dependency should already be included in `package.json` and `package-lock.json`.
@@ -39,6 +39,9 @@ python -c "import litellm; print(litellm.__version__)"
 Create a `.env.local` file in the project root:
 
 ```env
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+
 LITELLM_BASE_URL=http://127.0.0.1:4000
 LLM_MODEL=anthropic/claude-haiku-4-5-20251001
 ANTHROPIC_API_KEY=your_key_here
@@ -128,4 +131,5 @@ package-lock.json
 - Real API keys must only be stored in `.env.local`.
 - Do not commit `.env.local`.
 - The LLM response is cleaned before JSON parsing to remove possible Markdown code fences.
-- `pdf-parse@1.1.1` is used because newer versions may cause Node compatibility issues such as `DOMMatrix is not defined`.
+- PDF text extraction currently uses `pdf2json`.
+- Earlier `pdf-parse` and `pdfjs-dist` approaches caused compatibility issues in the Next.js API route.

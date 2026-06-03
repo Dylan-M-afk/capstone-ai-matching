@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react'
 import { createClient } from '@/utils/supabase/client'
 const supabase = createClient()
 
+
+
 export default function Home() {
 
   // Field Values
@@ -21,6 +23,12 @@ export default function Home() {
 
   // Validation
   const [error, setError] = useState('');
+
+  // CV upload logic
+  const [cvFile, setCvFile] = useState(null);
+  const [cvLoading, setCvLoading] = useState(false);
+  const [extractedProfile, setExtractedProfile] = useState(null);
+  const [cvError, setCvError] = useState("");
 
   // Dynamic Styling
   const progress = Math.round(
@@ -167,11 +175,124 @@ export default function Home() {
     }
   }
 
+  async function handleCVUpload() {
+    if (!cvFile) {
+      setCvError("Please select a PDF CV first.");
+      return;
+    }
+
+    setCvLoading(true);
+    setCvError("");
+
+    const formData = new FormData();
+    formData.append("cv", cvFile);
+
+    try {
+      const response = await fetch("/api/students/cv/extract", {
+        method: "POST",
+        body: formData,
+      });
+
+      const text = await response.text();
+
+      let result;
+      try {
+        result = JSON.parse(text);
+      } catch {
+        throw new Error(`Server did not return JSON. Status: ${response.status}`);
+      }
+      if (!response.ok || !result.success) {
+        throw new Error(result.error || "CV extraction failed.");
+      }
+
+      setExtractedProfile(result.extracted_profile);
+    } catch (error) {
+      setCvError(error.message);
+    } finally {
+      setCvLoading(false);
+    }
+  }
+
+  function applyExtractedProfile() {
+    if (!extractedProfile) return;
+
+    setFullName(extractedProfile.name ?? "");
+    setProgram(extractedProfile.program ?? "");
+    setSkills(Array.isArray(extractedProfile.skills)
+      ? extractedProfile.skills.join(", ")
+      : ""
+    );
+    setAvailability(extractedProfile.availability ?? "");
+    setBio(extractedProfile.bio ?? "");
+
+    if (extractedProfile.experience) {
+      setExpItems([
+        {
+          name: extractedProfile.experience,
+          years: "1",
+        },
+      ]);
+    }
+  }
+
   return (
     <div className="profile-page-container ">
 
       {/* Header */}
       <p className="profile-header-text">Student Profile</p>
+
+      <div className="profile-content-container mb-6">
+        <p className="profile-form-label">Upload CV for AI Extraction</p>
+
+        <div className="flex items-center gap-3">
+          <label className="button cursor-pointer" htmlFor="cv-upload">
+            Select CV PDF
+          </label>
+
+          <input
+            id="cv-upload"
+            type="file"
+            accept="application/pdf"
+            className="hidden"
+            onChange={(e) => setCvFile(e.target.files[0])}
+          />
+
+          <span>
+            {cvFile ? cvFile.name : "No file selected"}
+          </span>
+
+          <button
+            className="button"
+            type="button"
+            onClick={handleCVUpload}
+            disabled={cvLoading}
+          >
+            {cvLoading ? "Extracting..." : "Extract Profile from CV"}
+          </button>
+        </div>
+
+        {cvError && (
+          <p className="profile-form-error-text">Error: {cvError}</p>
+        )}
+
+        {extractedProfile && (
+          <div className="mt-4 bg-white border-2 border-black rounded p-4">
+            <p className="font-bold mb-2">Extracted Profile Preview</p>
+
+            <pre className="whitespace-pre-wrap text-sm">
+              {JSON.stringify(extractedProfile, null, 2)}
+            </pre>
+
+            <button
+              className="button mt-3"
+              type="button"
+              onClick={applyExtractedProfile}
+            >
+              Apply Extracted Data to Form
+            </button>
+          </div>
+        )}
+      </div>
 
       <form action={handleUpdate} onSubmit={(e) => { if (!validate()) e.preventDefault() }} className="profile-content-container">
 
