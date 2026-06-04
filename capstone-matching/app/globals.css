@@ -37,7 +37,7 @@ body {
 }
 
 .update {
-  background-color: red;
+  background-color: blue;
 }
 
 /* ========== LAYOUT ========== */
@@ -398,6 +398,7 @@ body {
   width: 100%;
   height: fit-content;
   margin-top: 1%;
+  margin-bottom: 1%;
 }
 
 .sjb-job-item-top-container {
@@ -451,6 +452,7 @@ body {
 
 .sjb-job-item-company-text {
   font-size: medium;
+  font-weight: bold;
   padding: 2px;
   margin: 2px;
   color: gray
@@ -458,6 +460,8 @@ body {
 
 .sjb-job-item-info-text {
   font-size: small;
+  font-weight: normal;
+  font-style: normal;
   margin-left: 20px;
   padding: 5px;
 }

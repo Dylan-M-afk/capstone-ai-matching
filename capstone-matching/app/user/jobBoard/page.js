@@ -33,22 +33,30 @@ export default function Home() {
     async function ApplyToJob(e) {
         // if (!validate()) return
         console.log("Applying to job: ")
-        console.log(e.target.id)
+        const jobId = e.target.id
+        console.log(jobId)
         const { data: { user } } = await supabase.auth.getUser()
 
         const { error: insertError } = await supabase
             .from('applications')
             .insert([{
                 student_id: user.id,
-                job_id: e.target.id,
+                job_id: jobId,
                 status: "Submitted"
             }])
 
         if (insertError) {
             console.error(insertError)
-            setError('Failed to apply to job posting: ' + e.target.id)
+            setError('Failed to apply to job posting: ' + jobId)
             return
         }
+
+        // Update the job in local state instantly
+        setJobs(prev => prev.map(job =>
+            job.id === jobId
+                ? { ...job, applications: [{ status: 'Submitted' }] }
+                : job
+        ))
 
         alert('Successfully Applied!')
     }
@@ -67,7 +75,7 @@ export default function Home() {
                                 <div className="sjb-job-item-top-left">
                                     <p className="sjb-job-item-title-text">{item.title}</p>
                                     <p className="sjb-job-item-company-text">
-                                        {item.companies?.company_name}
+                                        {item.companies?.company_name.toUpperCase()}
                                         <span className="sjb-job-item-info-text">
                                             Type: {item?.job_type} | Location: {item?.location} | Status: {item?.status}
                                         </span>
@@ -75,9 +83,9 @@ export default function Home() {
                                 </div>
                                 <div className="sjb-job-item-top-right">
                                     <button id={item.id}
-                                            onClick={ApplyToJob} 
-                                            disabled={(item?.applications[0]?.status == undefined) && (item?.status == "Open") ? false : true} 
-                                            className={(item?.applications[0]?.status == undefined) && (item?.status == "Open") ? "sjb-apply-btn" : "sjb-apply-disabled"}>
+                                        onClick={ApplyToJob}
+                                        disabled={(item?.applications[0]?.status == undefined) && (item?.status == "Open") ? false : true}
+                                        className={(item?.applications[0]?.status == undefined) && (item?.status == "Open") ? "sjb-apply-btn" : "sjb-apply-disabled"}>
                                         {item?.applications[0]?.status == undefined ? "Apply" : "Applied"}
                                     </button>
                                 </div>
