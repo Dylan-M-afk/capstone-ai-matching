@@ -37,7 +37,7 @@ body {
 }
 
 .update{
-  background-color: red;
+  background-color: green;
 }
 
 /* ========== LAYOUT ========== */
@@ -373,4 +373,126 @@ body {
   @apply bg-white shadow appearance-none border rounded w-20 py-2 px-3 text-red-500 leading-tight hover:bg-red-500 hover:text-white;
 }
 
+/* ========== STUDENT JOB BOARD ========== */
+.sjb-page-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
+.sjb-header-text {
+  font-size: xx-large;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 1%;
+}
+
+.sjb-job-list-container{
+  width: 50%;
+}
+
+.sjb-job-item-container{
+  background-color: var(--capstone-blue);
+  border: 2px solid black;
+  border-radius: 5px;
+  width: 100%;
+  height: fit-content;
+  margin-top: 1%;
+}
+
+.sbj-job-item-top-container {
+  /* background-color: red; */
+  height: fit-content;
+  border-bottom: 2px solid black;
+
+  display: flex;
+  flex-direction: row;  
+}
+
+.sbj-job-item-top-container-hover {
+  @apply hover:bg-capstone-green-strong rounded
+}
+
+.sbj-job-item-bottom-container {
+  /* background-color: blue; */
+  height: 150px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  /* align-items: center; */
+}
+
+.sbj-job-item-top-left {
+  /* background-color: red; */
+  flex-basis: 80%;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.sbj-job-item-top-right {
+  /* background-color: blue; */
+  flex-basis: 20%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sbj-job-item-title-text {
+  font-size: x-large;
+  font-weight: bold;
+  padding: 2px;
+  margin: 2px;
+}
+
+.sbj-job-item-company-text {
+  font-size: medium;
+  padding: 2px;
+  margin: 2px;
+  color: gray
+}
+
+.sbj-job-item-info-text{
+  font-size: small;
+  margin-left: 20px;
+  padding: 5px;
+}
+
+.sbj-job-item-bottom-about-container {
+  flex-basis: 50%;
+  margin: 5px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+
+.sbj-job-item-bottom-skills-container {
+  flex-basis: 25%;
+
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+}
+
+.sbj-job-item-bottom-schedule-container {
+  flex-basis: 25%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+
+.sbj-job-item-skills-list{
+  list-style-type: disc;
+}
+
+.sbj-job-item-skills-list-item{
+  margin-left: 15px;
+  padding: 2px;
+}
