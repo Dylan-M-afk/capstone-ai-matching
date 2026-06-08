@@ -213,27 +213,27 @@ export default function Home() {
     }
   }
 
-  function applyExtractedProfile() {
-    if (!extractedProfile) return;
+function applyExtractedProfile() {
+  if (!extractedProfile) return;
 
-    setFullName(extractedProfile.name ?? "");
-    setProgram(extractedProfile.program ?? "");
-    setSkills(Array.isArray(extractedProfile.skills)
+  setFullName(extractedProfile.name ?? "");
+  setProgram(extractedProfile.program ?? "");
+
+  setSkills(
+    Array.isArray(extractedProfile.skills)
       ? extractedProfile.skills.join(", ")
       : ""
-    );
-    setAvailability(extractedProfile.availability ?? "");
-    setBio(extractedProfile.bio ?? "");
+  );
 
-    if (extractedProfile.experience) {
-      setExpItems([
-        {
-          name: extractedProfile.experience,
-          years: "1",
-        },
-      ]);
-    }
+  setAvailability(extractedProfile.availability ?? "");
+  setBio(extractedProfile.bio ?? "");
+  setExpItems(extractedProfile.experience.map((exp) => ({
+  name: `${exp.title} - ${exp.company}`,
+  years: exp.years || "1",
+  description: exp.description || ""
+})));
   }
+
 
   return (
     <div className="profile-page-container ">
