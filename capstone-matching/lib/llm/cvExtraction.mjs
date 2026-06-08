@@ -16,7 +16,7 @@ export async function extractProfileFromCV(cvText) {
         },
         {
           role: "user",
-          content: `
+content: `
 Extract this CV into JSON:
 
 {
@@ -25,8 +25,16 @@ Extract this CV into JSON:
   "phone": "",
   "program": "",
   "skills": [],
-  "experience": "",
-  "education": "",
+  "experience": [
+    {
+      "title": "",
+      "company": "",
+      "duration": "",
+      "years": 0,
+      "description": ""
+    }
+  ],
+  "education": [],
   "availability": "",
   "preferred_job_type": "",
   "bio": ""
@@ -37,6 +45,13 @@ Rules:
 - Do not include markdown.
 - Use "Unknown" for missing string fields.
 - Use [] for missing array fields.
+- Infer years worked from the duration field.
+- Convert inferred duration into a decimal number.
+- Example:
+  "2024 - 2026" => 2
+  "Jan 2024 - Jul 2025" => 1.5
+  "2025 - Present" => estimate using current year.
+- If duration cannot be determined use 1.
 
 CV text:
 ${cvText}
