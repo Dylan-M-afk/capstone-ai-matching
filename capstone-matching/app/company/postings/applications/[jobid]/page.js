@@ -8,6 +8,7 @@ const supabase = createClient()
 
 export default function ApplicationsPage() {
   const { jobid } = useParams()
+  const [ranking, setRanking] = useState([])
   const [applications, setApplications] = useState([])
   const [job, setjob] = useState(null)
 
@@ -50,10 +51,17 @@ async function generateRankings() {
         job: job
       })
     });
-    console.log(job)
-    const result = await response.json();
 
-    console.log(result.rankings);
+    const result = await response.json();
+    console.log(result);
+
+    const rankingArray = result.rankings.rankings;
+
+    const rankingMap = Object.fromEntries(
+      rankingArray.map(r => [r.student_id, r])
+    );
+
+    setRanking(rankingMap);
 
   } catch (err) {
     console.error(err);
@@ -65,6 +73,7 @@ return (
     <h2>Applications Page</h2>
 
     <p>Job ID: {jobid}</p>
+
     <button
       onClick={generateRankings}
       style={{
@@ -79,78 +88,115 @@ return (
     >
       Generate Rankings
     </button>
-    <hr />
+
+    <hr style={{marginBottom: '20px'}}></hr>
 
     {applications.length === 0 ? (
       <p>No applications found</p>
     ) : (
-      applications.map((app) => (
-        <div
-          key={app.id}
-          style={{
-            border: '1px solid #ccc',
-            padding: '12px',
-            marginBottom: '12px',
-            borderRadius: '8px'
-          }}
-        >
-          {/* Application status */}
-          <p><strong>Status:</strong> {app.status}</p>
+      // STEP 1: sort ONLY if rankings exist
+      [...applications]
+        .sort((a, b) => {
+          const aId = a.student_profiles?.student_id
+          const bId = b.student_profiles?.student_id
 
-          <hr />
+          const aScore = ranking[aId]?.score ?? -1
+          const bScore = ranking[bId]?.score ?? -1
 
-          {/* Student basic info */}
-          <p><strong>Name:</strong> {app.student_profiles?.name}</p>
-          <p><strong>Program:</strong> {app.student_profiles?.program}</p>
-          <p><strong>Bio:</strong> {app.student_profiles?.bio}</p>
-          <p><strong>Availability:</strong> {app.student_profiles?.availability}</p>
+          return bScore - aScore
+        })
+        .map((app) => {
+          const studentId = app.student_profiles?.student_id
+          const studentRanking = ranking?.[studentId]
 
-          {/* Skills */}
-          {app.student_profiles?.skills?.length > 0 && (
-            <div style={{ marginTop: '10px' }}>
-              <strong>Skills:</strong>
+          return (
+            <div
+              key={app.id}
+              style={{
+                border: '1px solid #ccc',
+                padding: '12px',
+                marginBottom: '12px',
+                borderRadius: '8px'
+              }}
+            >
+              {/* ===== RANKED VIEW ===== */}
+              {studentRanking ? (
+                <>
+                  <h3>
+                    {app.student_profiles?.name} — {studentRanking.score}/100
+                  </h3>
 
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginTop: '6px' }}>
-                {app.student_profiles.skills.map((skill, i) => (
-                  <span
-                    key={i}
-                    style={{
-                      background: '#eef',
-                      padding: '4px 8px',
-                      borderRadius: '6px',
-                      fontSize: '12px'
-                    }}
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-          )}
+                  <p>{studentRanking.why}</p>
+                </>
+              ) : (
+                <>
+                  {/* ===== ORIGINAL VIEW ===== */}
 
-          {/* Experience */}
-          {app.student_profiles?.experience?.length > 0 && (
-            <div style={{ marginTop: '10px' }}>
-              <strong>Experience:</strong>
+                  <p><strong>Status:</strong> {app.status}</p>
 
-              <div style={{ marginTop: '6px' }}>
-                {app.student_profiles.experience.map((exp, i) => {
-                  const parsed =
-                    typeof exp === 'string' ? JSON.parse(exp) : exp
+                  <hr />
 
-                  return (
-                    <div key={i}>
-                      <p>
-                        <strong>{parsed.name}</strong> — {parsed.years} years
-                      </p>
+                  <p><strong>Name:</strong> {app.student_profiles?.name}</p>
+                  <p><strong>Program:</strong> {app.student_profiles?.program}</p>
+                  <p><strong>Bio:</strong> {app.student_profiles?.bio}</p>
+                  <p><strong>Availability:</strong> {app.student_profiles?.availability}</p>
+
+                  {/* Skills */}
+                  {app.student_profiles?.skills?.length > 0 && (
+                    <div style={{ marginTop: '10px' }}>
+                      <strong>Skills:</strong>
+
+                      <div style={{
+                        display: 'flex',
+                        flexWrap: 'wrap',
+                        gap: '6px',
+                        marginTop: '6px'
+                      }}>
+                        {app.student_profiles.skills.map((skill, i) => (
+                          <span
+                            key={i}
+                            style={{
+                              background: '#eef',
+                              padding: '4px 8px',
+                              borderRadius: '6px',
+                              fontSize: '12px'
+                            }}
+                          >
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
                     </div>
-                  )
-                })}
-              </div>
+                  )}
+
+                  {/* Experience */}
+                  {app.student_profiles?.experience?.length > 0 && (
+                    <div style={{ marginTop: '10px' }}>
+                      <strong>Experience:</strong>
+
+                      <div style={{ marginTop: '6px' }}>
+                        {app.student_profiles.experience.map((exp, i) => {
+                          const parsed =
+                            typeof exp === 'string'
+                              ? JSON.parse(exp)
+                              : exp
+
+                          return (
+                            <div key={i}>
+                              <p>
+                                <strong>{parsed.name}</strong> — {parsed.years} years
+                              </p>
+                            </div>
+                          )
+                        })}
+                      </div>
+                    </div>
+                  )}
+                </>
+              )}
             </div>
-          )}
-        </div>
-      ))
+          )
+        })
     )}
   </div>
 )}
