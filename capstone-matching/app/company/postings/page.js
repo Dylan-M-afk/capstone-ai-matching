@@ -13,14 +13,11 @@ export default function Home() {
     async function fetchApplications() {
 
       // Get logged in user
-      const {
-        data: { user },
-        error: authError
-      } = await supabase.auth.getUser()
-
+      const { data: { user }, error: authError } = await supabase.auth.getUser()
       if (authError || !user) {
-        console.error(authError)
+        console.error('Error fetching user:', authError)
         return
+
       }
 
       // Get all job posts + application count
@@ -36,9 +33,10 @@ export default function Home() {
         console.error(appError)
         return
       }
+      if (applications) {      
+        setPostings(applications || [])
+        console.log(applications)}
 
-      setPostings(applications || [])
-      console.log(applications)
     }
 
     fetchApplications()
