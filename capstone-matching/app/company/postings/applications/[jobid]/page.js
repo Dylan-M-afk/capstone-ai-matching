@@ -9,35 +9,76 @@ const supabase = createClient()
 export default function ApplicationsPage() {
   const { jobid } = useParams()
   const [applications, setApplications] = useState([])
+  const [job, setjob] = useState(null)
 
   useEffect(() => {
     async function fetchData() {
       if (!jobid) return
-
       console.log('Job ID:', jobid)
 
-      const { data, error } = await supabase
+      const { data: applicationData, error: applicationError } = await supabase
         .from('applications')
         .select(`*, student_profiles(*)`)
         .eq('job_id', jobid)
 
-      if (error) {
+      const { data: jobData, error: jobError } = await supabase
+        .from('job_posts')
+        .select(`*`)
+        .eq('id', jobid)
+
+      if (applicationError | jobError) {
         console.error(error)
         return
       }
-      console.log(data)
-      setApplications(data || [])
+
+      setjob(jobData || [])
+      setApplications(applicationData || [])
     }
 
     fetchData()
   }, [jobid])
+
+async function generateRankings() {
+  try {
+    const response = await fetch("/api/jobs/rank", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        students: applications.map(a => a.student_profiles),
+        job: job
+      })
+    });
+    console.log(job)
+    const result = await response.json();
+
+    console.log(result.rankings);
+
+  } catch (err) {
+    console.error(err);
+  }
+}
 
 return (
   <div style={{ padding: '20px' }}>
     <h2>Applications Page</h2>
 
     <p>Job ID: {jobid}</p>
-
+    <button
+      onClick={generateRankings}
+      style={{
+        padding: '10px 16px',
+        background: '#2563eb',
+        color: 'white',
+        border: 'none',
+        borderRadius: '8px',
+        cursor: 'pointer',
+        marginBottom: '20px'
+      }}
+    >
+      Generate Rankings
+    </button>
     <hr />
 
     {applications.length === 0 ? (
