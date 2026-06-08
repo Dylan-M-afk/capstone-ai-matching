@@ -8,7 +8,8 @@ const supabase = createClient()
 
 export default function ApplicationsPage() {
   const { jobid } = useParams()
-  const [ranking, setRanking] = useState([])
+  const [ranking, setRanking] = useState(null)
+  const [isRanked, setIsRanked] = useState(false)
   const [applications, setApplications] = useState([])
   const [job, setjob] = useState(null)
 
@@ -27,8 +28,8 @@ export default function ApplicationsPage() {
         .select(`*`)
         .eq('id', jobid)
 
-      if (applicationError | jobError) {
-        console.error(error)
+      if (applicationError || jobError) {
+        console.error(applicationError || jobError)
         return
       }
 
@@ -62,10 +63,18 @@ async function generateRankings() {
     );
 
     setRanking(rankingMap);
+    setIsRanked(true);
 
   } catch (err) {
     console.error(err);
   }
+}
+
+function getMatchBadge(score) {
+  if (score >= 85) return { label: "Strong Match", color: "#16a34a" } // green
+  if (score >= 70) return { label: "Good Match", color: "#2563eb" }   // blue
+  if (score >= 50) return { label: "Weak Match", color: "#f59e0b" }   // amber
+  return { label: "Poor Match", color: "#dc2626" }                    // red
 }
 
 return (
@@ -74,21 +83,34 @@ return (
 
     <p>Job ID: {jobid}</p>
 
-    <button
-      onClick={generateRankings}
-      style={{
-        padding: '10px 16px',
-        background: '#2563eb',
-        color: 'white',
-        border: 'none',
-        borderRadius: '8px',
-        cursor: 'pointer',
-        marginBottom: '20px'
-      }}
-    >
-      Generate Rankings
-    </button>
-
+  <button
+    onClick={() => {
+      if (isRanked) {
+        // RESET → manual review mode
+        setRanking(null)
+        setIsRanked(false)
+      } else {
+        // GENERATE rankings
+        generateRankings()
+      }
+    }}
+    style={{
+      padding: '10px 16px',
+      background: isRanked ? '#444' : '#2563eb',
+      color: 'white',
+      border: 'none',
+      borderRadius: '8px',
+      cursor: 'pointer',
+      marginBottom: '20px'
+    }}
+  >
+    {isRanked ? 'Manual Review' : 'Generate Rankings'}
+  </button>
+{isRanked && (
+  <p style={{ marginBottom: 10, color: "green" }}>
+    AI Ranking Active
+  </p>
+)}
     <hr style={{marginBottom: '20px'}}></hr>
 
     {applications.length === 0 ? (
@@ -97,17 +119,19 @@ return (
       // STEP 1: sort ONLY if rankings exist
       [...applications]
         .sort((a, b) => {
+          if (!isRanked || !ranking) return 0
           const aId = a.student_profiles?.student_id
           const bId = b.student_profiles?.student_id
 
-          const aScore = ranking[aId]?.score ?? -1
-          const bScore = ranking[bId]?.score ?? -1
+          const aScore = ranking?.[aId]?.score ?? 0
+          const bScore = ranking?.[bId]?.score ?? 0
 
           return bScore - aScore
         })
         .map((app) => {
           const studentId = app.student_profiles?.student_id
-          const studentRanking = ranking?.[studentId]
+          const studentRanking = isRanked && ranking?.[studentId]
+          const badge = getMatchBadge(studentRanking.score)
 
           return (
             <div
@@ -121,10 +145,23 @@ return (
             >
               {/* ===== RANKED VIEW ===== */}
               {studentRanking ? (
-                <>
-                  <h3>
-                    {app.student_profiles?.name} — {studentRanking.score}/100
-                  </h3>
+                <>             
+<h3 style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+  {app.student_profiles?.name} — {studentRanking.score}/100
+
+  <span
+    style={{
+      backgroundColor: badge.color,
+      color: "white",
+      fontSize: "12px",
+      padding: "3px 8px",
+      borderRadius: "999px",
+      fontWeight: "bold"
+    }}
+  >
+    {badge.label}
+  </span>
+</h3>
 
                   <p>{studentRanking.why}</p>
                 </>
