@@ -25,6 +25,8 @@ export default function NavBar({ role }) {
     let adminLocations = [
         { "name": "Home", "href": "/" },
         { "name": "Admin Dashboard", "href": "/admin/dashboard" },
+        { "name": "Student Management", "href": "/admin/user-list" },
+        { "name": "Company Management", "href": "/admin/company-list" }
     ]
 
     if (role == 'student') {
