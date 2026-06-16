@@ -29,11 +29,15 @@ body {
 }
 
 .button {
-  @apply bg-capstone-green hover:bg-capstone-green-strong text-black border-2 border-solid border-black font-bold py-2 px-4 my-2 mx-2 rounded 
+  @apply bg-capstone-green hover:bg-capstone-green-strong text-black border-2 border-solid border-black font-bold py-2 px-4 my-2 mx-2 rounded
 }
 
 .button-disabled {
   @apply bg-capstone-green hover:bg-capstone-green-strong text-black border-2 border-solid border-black font-bold py-2 px-4 my-2 mx-2 rounded opacity-50
+}
+
+.update {
+  background-color: blue;
 }
 
 /* ========== LAYOUT ========== */
@@ -85,7 +89,7 @@ body {
   border: 3px solid black;
 
   width: 60%;
-  margin-top: 3%; 
+  margin-top: 3%;
 }
 
 .home-header-text {
@@ -113,7 +117,7 @@ body {
 
 /* ========== LOGIN/REGISTER ========== */
 
-.login-register-container{
+.login-register-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -131,7 +135,7 @@ body {
   border-radius: 5px;
   width: fit-content;
 
-  display:flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -146,7 +150,362 @@ body {
 }
 
 .login-form-error-text {
-  color:red;
+  color: red;
   text-align: center;
   font-size: large;
+}
+
+/* ========== ADMIN ========== */
+
+.table-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.system-table {
+  width: 85%;
+  border-collapse: collapse;
+  background-color: white;
+  border: 3px solid black;
+  font-size: large;
+}
+
+.system-table thead {
+  background-color: var(--capstone-blue);
+  border-bottom: 4px solid black;
+}
+
+.system-table th {
+  padding: 14px;
+  text-align: left;
+  font-size: large;
+  font-weight: bold;
+  border-right: 2px solid black;
+}
+
+.system-table th:last-child {
+  border-right: none;
+}
+
+.system-table td {
+  padding: 12px;
+  border-top: 2px solid black;
+  border-right: 2px solid black;
+  background-color: null;
+}
+
+.system-table td:last-child {
+  border-right: none;
+}
+
+.system-table tbody tr:nth-child(even) {
+  background-color: #f7f7f7;
+}
+
+.system-table tbody tr:hover {
+  background-color: var(--capstone-green);
+  transition: 0.2s ease-in-out;
+}
+
+.table-title {
+  text-align: center;
+  font-size: xx-large;
+  font-weight: bold;
+  margin-top: 2rem;
+  border-bottom: 8px solid black;
+  display: inline-block;
+  padding-bottom: 0.25rem;
+}
+
+.table-container-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.table-action-btn {
+  @apply bg-capstone-green hover:bg-capstone-green-strong text-black border-2 border-solid border-black font-bold py-1 px-3 rounded;
+}
+
+/* ========== STUDENT PROFILE ========== */
+.profile-page-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.profile-header-text {
+  font-size: xx-large;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 1%;
+}
+
+
+.profile-content-container {
+  background-color: var(--capstone-blue);
+  border: 2px solid black;
+  width: 75%;
+  margin-top: 1%;
+}
+
+.profile-content-lr {
+  display: flex;
+  flex-direction: row;
+}
+
+.profile-content-left {
+  /* background-color: red; */
+  flex-basis: 50%;
+}
+
+.profile-content-right {
+  /* background-color: blue; */
+  flex-basis: 50%;
+}
+
+.profile-content-bottom {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-form-error-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-form-error-text {
+  color: red;
+  font-weight: bold;
+}
+
+.profile-form-row {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 5px 10px 5px;
+}
+
+.profile-form-label {
+  color: gray;
+  font-size: small;
+  font-weight: bold;
+
+}
+
+.profile-form-field {
+  @apply bg-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight;
+}
+
+.progress-bar-header {
+  color: gray;
+  font-size: small;
+  font-weight: bold;
+  margin-left: 3px
+}
+
+.progress-bar-container {
+  width: full;
+  height: 15px;
+  background-color: white;
+  border-radius: 15px;
+  margin: 10px;
+}
+
+.progress-bar-value {
+  background-color: var(--capstone-green-strong);
+  height: 15px;
+  /* width: 40%; */
+  border-radius: 15px;
+}
+
+.profile-experience-label-row {
+  display: flex;
+  margin: 0px 5px 0px 5px;
+  /* justify-content: space-between; */
+}
+
+.profile-experience-row {
+  display: flex;
+  margin: 0px 5px 10px 5px;
+}
+
+.profile-experience-company-field {
+  @apply bg-white shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight w-140 mr-3;
+}
+
+.profile-experience-date-field {
+  @apply bg-white shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight w-20;
+}
+
+.profile-add-experience-button {
+  @apply bg-capstone-green hover:bg-capstone-green-strong text-black border-2 border-solid border-black font-bold py-2 px-4 my-2 mx-1 rounded w-60
+}
+
+.profile-experience-item-list {
+  /* margin: 0px 5px 10px 5px; */
+}
+
+.profile-experience-item-container {
+  margin: 0px 5px 10px 5px;
+  display: flex;
+}
+
+.experience-item {
+  @apply bg-white shadow appearance-none border rounded w-140 py-2 px-1 mr-3 text-gray-700 leading-tight flex;
+}
+
+.experience-item-text {
+  @apply p-1 w-113
+}
+
+.experience-item-years {
+  text-align: right;
+  font-weight: bold;
+}
+
+.experience-item-delete {
+  @apply bg-white shadow appearance-none border rounded w-20 py-2 px-3 text-red-500 leading-tight hover:bg-red-500 hover:text-white;
+}
+
+/* ========== STUDENT JOB BOARD ========== */
+.sjb-page-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.sjb-header-text {
+  font-size: xx-large;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 1%;
+}
+
+.sjb-job-list-container {
+  width: 60%;
+}
+
+.sjb-job-item-container {
+  background-color: var(--capstone-blue);
+  border: 2px solid black;
+  border-radius: 5px;
+  width: 100%;
+  height: fit-content;
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+
+.sjb-job-item-top-container {
+  /* background-color: red; */
+  height: fit-content;
+  border-bottom: 2px solid black;
+
+  display: flex;
+  flex-direction: row;
+}
+
+.sjb-job-item-top-container-hover {
+  @apply hover:bg-capstone-green-strong rounded
+}
+
+.sjb-job-item-bottom-container {
+  /* background-color: blue; */
+  height: 150px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  /* align-items: center; */
+}
+
+.sjb-job-item-top-left {
+  /* background-color: red; */
+  flex-basis: 80%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.sjb-job-item-top-right {
+  /* background-color: blue; */
+  flex-basis: 20%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sjb-job-item-title-text {
+  font-size: x-large;
+  font-weight: bold;
+  padding: 2px;
+  margin: 2px;
+}
+
+.sjb-job-item-company-text {
+  font-size: medium;
+  font-weight: bold;
+  padding: 2px;
+  margin: 2px;
+  color: gray
+}
+
+.sjb-job-item-info-text {
+  font-size: small;
+  font-weight: normal;
+  font-style: normal;
+  margin-left: 20px;
+  padding: 5px;
+}
+
+.sjb-job-item-bottom-about-container {
+  flex-basis: 50%;
+  margin: 5px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+
+.sjb-job-item-bottom-skills-container {
+  flex-basis: 20%;
+  margin: 2px;
+
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+}
+
+.sjb-job-item-bottom-schedule-container {
+  flex-basis: 30%;
+  margin: 2px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+
+.sjb-job-item-skills-list {
+  list-style-type: disc;
+}
+
+.sjb-job-item-skills-list-item {
+  margin-left: 15px;
+  padding: 2px;
+}
+
+.sjb-apply-btn {
+  @apply bg-capstone-green hover:bg-capstone-green-strong text-black border-2 border-solid border-black font-bold py-2 px-4 m-5 rounded text-2xl
+}
+
+.sjb-apply-disabled {
+  @apply bg-capstone-green text-black border-2 border-solid border-black font-bold py-2 px-4 m-5 rounded text-2xl opacity-50
 }

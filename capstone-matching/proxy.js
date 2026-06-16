@@ -49,7 +49,7 @@ export async function proxy(request) {
     const role = profile?.role
     const path = request.nextUrl.pathname
 
-    console.log(role)
+    // console.log(role)
 
     const allowedPaths = {
       admin: '/admin',
