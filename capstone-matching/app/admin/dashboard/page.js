@@ -1,30 +1,44 @@
-'use client'
-import Link from 'next/link'
+import { createClient } from '@/utils/supabase/server'
+import DashboardCards from './DashboardCards'
 
-export default function Home() {
+export default async function DashboardPage() {
+  const supabase = await createClient()
+
+  const [
+    studentsResult,
+    companiesResult,
+    applicationsResult,
+    jobsResult,
+  ] = await Promise.all([
+    supabase
+      .from('student_profiles')
+      .select('*', { count: 'exact', head: true }),
+
+    supabase
+      .from('companies')
+      .select('*', { count: 'exact', head: true }),
+
+    supabase
+      .from('applications')
+      .select('*', { count: 'exact', head: true }),
+
+    supabase
+      .from('job_posts')
+      .select('*', { count: 'exact', head: true }),
+  ])
+
+  const stats = {
+    students: studentsResult.count ?? 0,
+    companies: companiesResult.count ?? 0,
+    applications: applicationsResult.count ?? 0,
+    jobs: jobsResult.count ?? 0,
+  }
+
   return (
-    <div className="login-register-container">
-      <div className="login-register-btn-row">
+    <div className="dashboard-page">
+      <h1>Dashboard</h1>
 
-        <Link href="user-list">
-          <button className="button">
-            User List
-          </button>
-        </Link>
-
-        <Link href="company-list">
-          <button className="button">
-            Company List
-          </button>
-        </Link>
-
-        <Link href="account-management">
-          <button className="button">
-            Account Management
-          </button>
-        </Link>
-
-      </div>
+      <DashboardCards stats={stats} />
     </div>
-  );
+  )
 }
