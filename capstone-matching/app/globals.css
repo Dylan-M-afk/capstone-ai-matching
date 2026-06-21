@@ -260,6 +260,16 @@ body {
   margin-top: 5px;
 }
 
+/* ========== ADMIN Dashboard ========== */
+.page-header-stats {
+  font-size: xx-large;
+  font-weight: bold;
+  text-align: center;
+
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+
 /* ========== STUDENT DASHBOARD ========== */
 .sd-container {
   display: flex;

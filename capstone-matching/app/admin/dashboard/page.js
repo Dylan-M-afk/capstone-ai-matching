@@ -1,5 +1,6 @@
 import { createClient } from '@/utils/supabase/server'
 import DashboardCards from './DashboardCards'
+import Link from 'next/link'
 
 export default async function DashboardPage() {
   const supabase = await createClient()
@@ -38,6 +39,36 @@ export default async function DashboardPage() {
     <div className="dashboard-page">
       <h1>Dashboard</h1>
 
+      <div className="sd-container">
+        <p className="page-header">Company Dashboard</p>
+        <div className="sd-content-container drop-shadow-2xl">
+          <p className="sd-body-text">
+            Welcome to the Admin Dashboard. From here you can view all and manage all existing students and companies.
+              Check the Create Company page to create company accounts for new clients.
+          </p>
+
+          <div className='sd-btn-row'>
+            <Link href="/admin/user-list">
+              <button className="button">
+                User Management
+              </button>
+            </Link>
+            <Link href="/admin/company-list">
+              <button className="button">
+                Create Management
+              </button>
+            </Link>
+            <Link href="/admin/account-management">
+              <button className="button">
+                Company Creation
+              </button>
+            </Link>
+          </div>
+
+        </div>
+
+      </div>
+      <p className="page-header-stats"> System Stats</p>
       <DashboardCards stats={stats} />
     </div>
   )
