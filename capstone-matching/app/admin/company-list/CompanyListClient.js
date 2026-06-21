@@ -48,7 +48,7 @@ export default function CompanyListClient({ initialCompanies }) {
 
   return (
     <div className="table-container">
-
+      <p className="page-header">Company Managament</p>
       <div className="table-actions">
         <button
           className="button"

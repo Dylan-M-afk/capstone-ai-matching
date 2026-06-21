@@ -24,6 +24,9 @@ export default function DashboardCards({ stats }) {
 
   return (
     <div className="dashboard-grid">
+        <p className="page-header">Home Page</p>
+
+      
       {cards.map(card => (
         <div
           key={card.title}
