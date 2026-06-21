@@ -2,20 +2,31 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #ffffff;
+
   --capstone-green: #dcfff1;
   --capstone-green-strong: #7bffca;
   --capstone-blue: #deffff;
   --capstone-blue-strong: #9bffff;
+
+  --capstone-grey: #1f1f1f;
+  --capstone-grey-strong: #212121;
+  --capstone-black: #171717;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
   --color-capstone-green: var(--capstone-green);
   --color-capstone-blue: var(--capstone-blue);
   --color-capstone-green-strong: var(--capstone-green-strong);
   --color-capstone-blue-strong: var(--capstone-blue-strong);
+
+  --color-capstone-grey: var(--capstone-grey);
+  --color-capstone-black: var(--capstone-black);
+  --color-capstone-grey-strong: var(--capstone-grey-strong);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -23,13 +34,13 @@
 /* ========== GLOBAL STYLES ========== */
 
 body {
-  background: var(--background);
+  background: var(--capstone-black);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
 
 .button {
-  @apply bg-capstone-green hover:bg-capstone-green-strong text-black border-2 border-solid border-black font-bold py-2 px-4 my-2 mx-2 rounded
+  @apply bg-capstone-green hover:bg-capstone-green-strong text-black border-2 border-solid border-capstone-grey font-bold py-2 px-4 my-2 mx-2 rounded
 }
 
 .button-disabled {
@@ -43,8 +54,8 @@ body {
 /* ========== LAYOUT ========== */
 
 .nav-header {
-  background-color: var(--capstone-blue);
-  border-bottom: 4px solid black;
+  background-color: var(--capstone-black);
+  border-bottom: 4px solid var(--capstone-grey-strong);
 
   display: flex;
   flex-direction: column;
@@ -55,8 +66,8 @@ body {
 .nav-header-text {
   font-size: xxx-large;
   font-weight: bold;
-  border-bottom: 12px solid black;
-  border-radius: 4px;
+  border-bottom: 12px solid var(--color-capstone-green-strong);
+  border-radius: 5px;
   margin-bottom: 15px;
 }
 
@@ -85,8 +96,8 @@ body {
   justify-content: center;
   align-items: center;
 
-  background-color: var(--capstone-blue);
-  border: 3px solid black;
+  background-color: var(--capstone-black);
+  border: 3px solid var(--capstone-grey-strong);
 
   width: 60%;
   margin-top: 3%;
@@ -96,7 +107,7 @@ body {
   font-size: xx-large;
   font-weight: bold;
   text-align: center;
-  border-bottom: 12px solid black;
+  border-bottom: 12px solid var(--capstone-green-strong);
 
   margin-top: 2%;
 }
@@ -111,7 +122,7 @@ body {
 }
 
 .home-login-btn {
-  @apply text-[x-large] font-bold mb-10 p-2.5 rounded-[10px] border-[5px] border-solid border-[black] bg-capstone-green hover:bg-capstone-green-strong;
+  @apply text-[x-large] font-bold mb-10 p-2.5 rounded-[10px] border-[5px] border-solid border-capstone-grey-strong bg-capstone-green-strong hover:bg-capstone-green text-capstone-black;
 }
 
 
