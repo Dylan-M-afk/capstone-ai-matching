@@ -58,7 +58,7 @@ body {
 }
 
 .update {
-  background-color: red;
+  background-color: blue;
 }
 
 /* ========== LAYOUT ========== */
@@ -569,4 +569,54 @@ body {
 
 .sjb-apply-disabled {
   @apply bg-capstone-green-strong text-black border-2 border-solid border-capstone-grey-strong font-bold py-2 px-4 m-5 rounded text-2xl opacity-50
+}
+
+/* COMPANY POSTINGS */
+.cjb-page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cjb-post-container {
+  background-color: var(--capstone-grey);
+  border: 5px solid var(--color-capstone-grey-strong);
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 12px;
+  margin-right: 60px;
+  width: 50%;
+}
+
+.cjb-title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cjb-posting-header {
+  margin-bottom: 4px;
+  font-size: x-large;
+  font-weight: bold;
+  border-bottom: 5px solid var(--capstone-black);
+}
+
+.cjb-posting-desc {
+  margin-bottom: 8px;
+  font-style: italic;
+}
+
+.cjb-skills-contianer{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.cjb-skills-item {
+  background-color: var(--capstone-green-strong);
+  color: black;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: medium;
 }
