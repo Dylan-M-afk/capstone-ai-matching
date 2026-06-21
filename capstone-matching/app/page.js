@@ -3,6 +3,7 @@ import Link from 'next/link'
 export default function Home() {
   return (
     <div className="home-container">
+      <p className="page-header">Home Page</p>
       <div className="home-content-container drop-shadow-2xl">
         <p className="home-header-text">READY TO CONNECT?</p>
         <p className="home-body-text">Here at [COMPANY NAME], we strive to
