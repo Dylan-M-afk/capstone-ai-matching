@@ -20,6 +20,8 @@ export default function NavBar({ role }) {
     let companyLocations = [
         { "name": "Home", "href": "/" },
         { "name": "Company Dashboard", "href": "/company/dashboard" },
+        { "name": "Company Postings", "href": "/company/postings" },
+        { "name": "Create Postings", "href": "/company/create-posting" },
     ]
 
     let adminLocations = [
