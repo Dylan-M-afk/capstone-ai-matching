@@ -58,7 +58,7 @@ body {
 }
 
 .update {
-  background-color: blue;
+  background-color: black;
 }
 
 /* ========== LAYOUT ========== */
@@ -571,7 +571,7 @@ body {
   @apply bg-capstone-green-strong text-black border-2 border-solid border-capstone-grey-strong font-bold py-2 px-4 m-5 rounded text-2xl opacity-50
 }
 
-/* COMPANY POSTINGS */
+/* =========== COMPANY POSTINGS ========== */
 .cjb-page-container {
   display: flex;
   flex-direction: column;
@@ -619,4 +619,55 @@ body {
   padding: 4px 8px;
   border-radius: 6px;
   font-size: medium;
+}
+
+/* =========== COMPANY POSTING APPLICATIONS ========== */
+.cjba-page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cbja-header-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cjba-app-item-container {
+  border: 5px solid var(--color-capstone-grey-strong);
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  width: 70%;
+}
+
+.cbja-app-item-rank-text {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+}
+
+.cbja-app-item-rank-badge {
+  color: white;
+  font-size: 12px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-weight: bold;
+}
+
+.cjba-app-item-rank-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.cjba-app-item-rank-badge {
+  background-color: var(--capstone-green-strong);
+  color: black;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
 }
