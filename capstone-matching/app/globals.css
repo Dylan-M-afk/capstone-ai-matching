@@ -175,7 +175,7 @@ body {
   font-size: large;
 }
 
-/* ========== ADMIN ========== */
+/* ========== ADMIN TABLES ========== */
 
 .table-container {
   display: flex;
@@ -249,6 +249,15 @@ body {
 
 .table-action-btn {
   @apply bg-capstone-green hover:bg-capstone-green-strong text-black border-2 border-solid border-black font-bold py-1 px-3 rounded;
+}
+
+/* ========== ADMIN CREATE COMPANY ========== */
+.acc-page-container {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  margin-top: 5px;
 }
 
 /* ========== STUDENT DASHBOARD ========== */
