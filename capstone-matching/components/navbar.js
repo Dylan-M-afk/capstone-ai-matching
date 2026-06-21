@@ -28,7 +28,8 @@ export default function NavBar({ role }) {
         { "name": "Home", "href": "/" },
         { "name": "Admin Dashboard", "href": "/admin/dashboard" },
         { "name": "Student Management", "href": "/admin/user-list" },
-        { "name": "Company Management", "href": "/admin/company-list" }
+        { "name": "Company Management", "href": "/admin/company-list" },
+        { "name": "Create Company", "href": "/admin/account-management" }
     ]
 
     if (role == 'student') {
