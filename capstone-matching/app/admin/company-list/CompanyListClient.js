@@ -47,7 +47,7 @@ export default function CompanyListClient({ initialCompanies }) {
   }
 
   return (
-    <div className="table-container">
+    <div className="table-container drop-shadow-2xl mb-5">
       <p className="page-header">Company Managament</p>
       <div className="table-actions">
         <button

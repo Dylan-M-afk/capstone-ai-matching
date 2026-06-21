@@ -52,7 +52,7 @@ export default function StudentListClient({ initialStudents }) {
   }
 
   return (
-    <div className="table-container">
+    <div className="table-container drop-shadow-2xl">
       <p className="page-header">Student Management</p>
       <table border="1" cellPadding="10" className="system-table">
         <thead>
