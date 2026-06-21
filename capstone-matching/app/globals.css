@@ -58,7 +58,7 @@ body {
 }
 
 .update {
-  background-color: black;
+  background-color: blue;
 }
 
 /* ========== LAYOUT ========== */
@@ -670,4 +670,35 @@ body {
   padding: 4px 8px;
   border-radius: 6px;
   font-size: 12px;
+}
+
+/* =========== CREATE POSTING ========== */
+.cjp-form-row {
+  display: flex;
+  flex-direction: column;
+  margin: 0px 5px 10px 5px;
+  align-items: center;
+}
+
+.cjp-add-skill-button {
+  @apply bg-capstone-green-strong hover:bg-capstone-green text-black border-2 border-solid border-capstone-grey-strong font-bold py-2 px-4 my-2 mx-1 rounded w-full
+}
+
+.cjp-skills-row {
+  display: flex;
+  margin-left: 10px;
+
+}
+
+.cjp-skills-item {
+  @apply bg-white shadow appearance-none border rounded  text-gray-700 leading-tight flex;
+}
+
+.cjp-skills-text {
+  @apply p-1 w-140
+}
+
+.cjp-days-rows {
+  display: flex;
+  justify-content: space-around;
 }
