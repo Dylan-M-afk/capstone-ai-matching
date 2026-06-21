@@ -239,9 +239,9 @@ function applyExtractedProfile() {
     <div className="profile-page-container ">
 
       {/* Header */}
-      <p className="profile-header-text">Student Profile</p>
+      <p className="page-header">Student Profile</p>
 
-      <div className="profile-content-container mb-6">
+      <div className="profile-content-container mb-6 drop-shadow-2xl">
         <p className="profile-form-label">Upload CV for AI Extraction</p>
 
         <div className="flex items-center gap-3">
@@ -296,7 +296,7 @@ function applyExtractedProfile() {
 
       <form action={handleUpdate} onSubmit={(e) => { if (!validate()) e.preventDefault() }} className="profile-content-container">
 
-        <div className="profile-content-lr">
+        <div className="profile-content-lr drop-shadow-2xl">
 
           {/* Standard Fields */}
           <div className="profile-content-left">

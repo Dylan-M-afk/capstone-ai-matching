@@ -54,11 +54,11 @@ body {
   border-bottom: 12px solid var(--capstone-green-strong);
 
   margin-top: 1%;
-  margin-bottom: 2%;
+  margin-bottom: 1%;
 }
 
 .update {
-  background-color: red;
+  background-color: gray;
 }
 
 /* ========== LAYOUT ========== */
@@ -92,7 +92,6 @@ body {
   font-weight: bold;
   margin: 15px 55px; */
   @apply text-2xl font-bold mx-10 my-40 p-1 hover:text-capstone-green-strong hover:border-capstone-green-strong border-transparent border-2 rounded-lg
-
 }
 
 /* ========== HOME ========== */
@@ -286,9 +285,7 @@ body {
   margin: 10px 0px 30px 0px;
 }
 
-.sd-btn-row {
-
-}
+.sd-btn-row {}
 
 /* ========== STUDENT PROFILE ========== */
 .profile-page-container {
@@ -296,7 +293,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
+  margin-bottom: 20px;
 }
 
 .profile-header-text {
@@ -308,8 +305,8 @@ body {
 
 
 .profile-content-container {
-  background-color: var(--capstone-blue);
-  border: 2px solid black;
+  background-color: var(--capstone-grey);
+  border: 2px solid var(--capstone-grey-strong);
   width: 75%;
   margin-top: 1%;
 }
@@ -353,10 +350,10 @@ body {
 }
 
 .profile-form-label {
-  color: gray;
+  color: white;
   font-size: small;
   font-weight: bold;
-
+  margin: 2px;
 }
 
 .profile-form-field {
@@ -364,7 +361,7 @@ body {
 }
 
 .progress-bar-header {
-  color: gray;
+  color: white;
   font-size: small;
   font-weight: bold;
   margin-left: 3px
@@ -379,9 +376,9 @@ body {
 }
 
 .progress-bar-value {
-  background-color: var(--capstone-green-strong);
+  background: #FC89B5;
+  background: linear-gradient(90deg, rgba(252, 137, 181, 1) 0%, rgba(252, 117, 169, 1) 25%, rgba(252, 97, 156, 1) 50%, rgba(252, 75, 143, 1) 75%, rgba(252, 61, 134, 1) 100%);
   height: 15px;
-  /* width: 40%; */
   border-radius: 15px;
 }
 
@@ -405,7 +402,7 @@ body {
 }
 
 .profile-add-experience-button {
-  @apply bg-capstone-green hover:bg-capstone-green-strong text-black border-2 border-solid border-black font-bold py-2 px-4 my-2 mx-1 rounded w-60
+  @apply bg-capstone-green-strong hover:bg-capstone-green text-black border-2 border-solid border-capstone-grey-strong font-bold py-2 px-4 my-2 mx-1 rounded w-60
 }
 
 .profile-experience-item-list {
@@ -431,7 +428,7 @@ body {
 }
 
 .experience-item-delete {
-  @apply bg-white shadow appearance-none border rounded w-20 py-2 px-3 text-red-500 leading-tight hover:bg-red-500 hover:text-white;
+  @apply bg-red-500 shadow appearance-none border rounded w-20 py-2 px-3 text-white leading-tight hover:bg-white hover:text-red-500;
 }
 
 /* ========== STUDENT JOB BOARD ========== */
