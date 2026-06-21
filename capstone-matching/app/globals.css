@@ -48,7 +48,7 @@ body {
 }
 
 .update {
-  background-color: blue;
+  background-color: green;
 }
 
 /* ========== LAYOUT ========== */
@@ -78,9 +78,11 @@ body {
 }
 
 .nav-item {
-  font-size: x-large;
+  /* font-size: x-large;
   font-weight: bold;
-  margin: 15px 55px;
+  margin: 15px 55px; */
+  @apply text-2xl font-bold mx-10 my-40 p-1 hover:text-capstone-green-strong hover:border-capstone-green-strong border-transparent border-2 rounded-lg
+
 }
 
 /* ========== HOME ========== */
