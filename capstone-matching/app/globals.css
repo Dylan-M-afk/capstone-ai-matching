@@ -58,7 +58,7 @@ body {
 }
 
 .update {
-  background-color: gray;
+  background-color: red;
 }
 
 /* ========== LAYOUT ========== */
@@ -263,7 +263,8 @@ body {
   align-items: center;
 
   background-color: var(--capstone-black);
-  border: 3px solid var(--capstone-grey-strong);
+  border: 5px solid var(--capstone-grey-strong);
+  border-radius: 5px;
 
   width: 60%;
 }
@@ -306,7 +307,8 @@ body {
 
 .profile-content-container {
   background-color: var(--capstone-grey);
-  border: 2px solid var(--capstone-grey-strong);
+  border: 5px solid var(--capstone-grey-strong);
+  border-radius: 5px;
   width: 75%;
   margin-top: 1%;
 }
@@ -451,9 +453,9 @@ body {
 }
 
 .sjb-job-item-container {
-  background-color: var(--capstone-blue);
-  border: 2px solid black;
-  border-radius: 5px;
+  background-color: var(--capstone-grey);
+  border: 5px solid var(--capstone-grey-strong);
+  border-radius: 10px;
   width: 100%;
   height: fit-content;
   margin-top: 1%;
@@ -463,7 +465,7 @@ body {
 .sjb-job-item-top-container {
   /* background-color: red; */
   height: fit-content;
-  border-bottom: 2px solid black;
+  border-bottom: 5px solid var(--color-capstone-grey-strong);
 
   display: flex;
   flex-direction: row;
@@ -562,9 +564,9 @@ body {
 }
 
 .sjb-apply-btn {
-  @apply bg-capstone-green hover:bg-capstone-green-strong text-black border-2 border-solid border-black font-bold py-2 px-4 m-5 rounded text-2xl
+  @apply bg-capstone-green-strong hover:bg-capstone-green text-black border-2 border-solid border-capstone-grey-strong font-bold py-2 px-4 m-5 rounded text-2xl
 }
 
 .sjb-apply-disabled {
-  @apply bg-capstone-green text-black border-2 border-solid border-black font-bold py-2 px-4 m-5 rounded text-2xl opacity-50
+  @apply bg-capstone-green-strong text-black border-2 border-solid border-capstone-grey-strong font-bold py-2 px-4 m-5 rounded text-2xl opacity-50
 }
