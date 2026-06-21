@@ -4,7 +4,7 @@ import Link from 'next/link'
 export default function Home() {
   return (
     <div className="sd-container">
-      <p className="page-header">Student Dashboard</p>
+      <p className="page-header">Company Dashboard</p>
       <div className="sd-content-container drop-shadow-2xl">
         <p className="sd-body-text">
           Welcome to the Company Dashboard. From here you can access the Current Posting page to view 
