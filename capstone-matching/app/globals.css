@@ -2,20 +2,31 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #ffffff;
+
   --capstone-green: #dcfff1;
   --capstone-green-strong: #7bffca;
   --capstone-blue: #deffff;
   --capstone-blue-strong: #9bffff;
+
+  --capstone-grey: #1f1f1f;
+  --capstone-grey-strong: #212121;
+  --capstone-black: #171717;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
   --color-capstone-green: var(--capstone-green);
   --color-capstone-blue: var(--capstone-blue);
   --color-capstone-green-strong: var(--capstone-green-strong);
   --color-capstone-blue-strong: var(--capstone-blue-strong);
+
+  --color-capstone-grey: var(--capstone-grey);
+  --color-capstone-black: var(--capstone-black);
+  --color-capstone-grey-strong: var(--capstone-grey-strong);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -23,28 +34,38 @@
 /* ========== GLOBAL STYLES ========== */
 
 body {
-  background: var(--background);
+  background: var(--capstone-black);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
 
 .button {
-  @apply bg-capstone-green hover:bg-capstone-green-strong text-black border-2 border-solid border-black font-bold py-2 px-4 my-2 mx-2 rounded
+  @apply bg-capstone-green-strong hover:bg-capstone-green text-black border-2 border-solid border-capstone-grey font-bold py-2 px-4 my-2 mx-2 rounded
 }
 
 .button-disabled {
-  @apply bg-capstone-green hover:bg-capstone-green-strong text-black border-2 border-solid border-black font-bold py-2 px-4 my-2 mx-2 rounded opacity-50
+  @apply bg-capstone-green-strong hover:bg-capstone-green text-black border-2 border-solid border-black font-bold py-2 px-4 my-2 mx-2 rounded opacity-50
+}
+
+.page-header {
+  font-size: xx-large;
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 12px solid var(--capstone-green-strong);
+
+  margin-top: 1%;
+  margin-bottom: 1%;
 }
 
 .update {
-  background-color: blue;
+  background-color: red;
 }
 
 /* ========== LAYOUT ========== */
 
 .nav-header {
-  background-color: var(--capstone-blue);
-  border-bottom: 4px solid black;
+  background-color: var(--capstone-black);
+  border-bottom: 4px solid var(--capstone-grey-strong);
 
   display: flex;
   flex-direction: column;
@@ -55,8 +76,8 @@ body {
 .nav-header-text {
   font-size: xxx-large;
   font-weight: bold;
-  border-bottom: 12px solid black;
-  border-radius: 4px;
+  border-bottom: 12px solid var(--color-capstone-green-strong);
+  border-radius: 5px;
   margin-bottom: 15px;
 }
 
@@ -67,14 +88,16 @@ body {
 }
 
 .nav-item {
-  font-size: x-large;
+  /* font-size: x-large;
   font-weight: bold;
-  margin: 15px 55px;
+  margin: 15px 55px; */
+  @apply text-2xl font-bold mx-10 my-40 p-1 hover:text-capstone-green-strong hover:border-capstone-green-strong border-transparent border-2 rounded-lg
 }
 
 /* ========== HOME ========== */
 .home-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -85,22 +108,19 @@ body {
   justify-content: center;
   align-items: center;
 
-  background-color: var(--capstone-blue);
-  border: 3px solid black;
+  background-color: var(--capstone-black);
+  border: 3px solid var(--capstone-grey-strong);
 
   width: 60%;
-  margin-top: 3%;
 }
 
 .home-header-text {
   font-size: xx-large;
   font-weight: bold;
   text-align: center;
-  border-bottom: 12px solid black;
 
-  margin-top: 2%;
+  margin-top: 1%;
 }
-
 
 .home-body-text {
   font-size: large;
@@ -111,7 +131,7 @@ body {
 }
 
 .home-login-btn {
-  @apply text-[x-large] font-bold mb-10 p-2.5 rounded-[10px] border-[5px] border-solid border-[black] bg-capstone-green hover:bg-capstone-green-strong;
+  @apply text-[x-large] font-bold mb-10 p-2.5 rounded-[10px] border-[5px] border-solid border-capstone-grey-strong bg-capstone-green-strong hover:bg-capstone-green text-capstone-black;
 }
 
 
@@ -130,8 +150,8 @@ body {
 }
 
 .login-register-form-container {
-  background-color: var(--capstone-blue);
-  border: 3px solid black;
+  background-color: var(--capstone-grey);
+  border: 3px solid var(--capstone-grey-strong);
   border-radius: 5px;
   width: fit-content;
 
@@ -142,7 +162,7 @@ body {
 }
 
 .login-form-label {
-  @apply block text-gray-700 text-sm font-bold mb-2
+  @apply block text-white text-sm font-bold mb-2
 }
 
 .login-form-field {
@@ -155,25 +175,27 @@ body {
   font-size: large;
 }
 
-/* ========== ADMIN ========== */
+/* ========== ADMIN TABLES ========== */
 
 .table-container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   margin-top: 2rem;
 }
 
 .system-table {
   width: 85%;
   border-collapse: collapse;
-  background-color: white;
+  background-color: var(--capstone-grey);
   border: 3px solid black;
   font-size: large;
 }
 
 .system-table thead {
-  background-color: var(--capstone-blue);
+  background-color: var(--capstone-green-strong);
   border-bottom: 4px solid black;
+  color: black;
 }
 
 .system-table th {
@@ -200,11 +222,12 @@ body {
 }
 
 .system-table tbody tr:nth-child(even) {
-  background-color: #f7f7f7;
+  background-color: var(--capstone-grey-strong);;
 }
 
 .system-table tbody tr:hover {
   background-color: var(--capstone-green);
+  color: black;
   transition: 0.2s ease-in-out;
 }
 
@@ -228,13 +251,72 @@ body {
   @apply bg-capstone-green hover:bg-capstone-green-strong text-black border-2 border-solid border-black font-bold py-1 px-3 rounded;
 }
 
+/* ========== ADMIN CREATE COMPANY ========== */
+.acc-page-container {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  margin-top: 5px;
+}
+
+/* ========== ADMIN Dashboard ========== */
+.page-header-stats {
+  font-size: xx-large;
+  font-weight: bold;
+  text-align: center;
+
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+
+/* ========== STUDENT DASHBOARD ========== */
+.sd-container {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+}
+
+.sd-content-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--capstone-black);
+  border: 5px solid var(--capstone-grey-strong);
+  border-radius: 5px;
+
+  width: 60%;
+}
+
+.sd-header-text {
+  font-size: xx-large;
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 12px solid var(--capstone-green-strong);
+
+  margin-top: 2%;
+}
+
+.sd-body-text {
+  font-size: large;
+  text-align: center;
+  width: 60%;
+  padding: 5px;
+  margin: 10px 0px 30px 0px;
+}
+
+.sd-btn-row {}
+
 /* ========== STUDENT PROFILE ========== */
 .profile-page-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
+  margin-bottom: 20px;
 }
 
 .profile-header-text {
@@ -246,8 +328,9 @@ body {
 
 
 .profile-content-container {
-  background-color: var(--capstone-blue);
-  border: 2px solid black;
+  background-color: var(--capstone-grey);
+  border: 5px solid var(--capstone-grey-strong);
+  border-radius: 5px;
   width: 75%;
   margin-top: 1%;
 }
@@ -291,10 +374,10 @@ body {
 }
 
 .profile-form-label {
-  color: gray;
+  color: white;
   font-size: small;
   font-weight: bold;
-
+  margin: 2px;
 }
 
 .profile-form-field {
@@ -302,7 +385,7 @@ body {
 }
 
 .progress-bar-header {
-  color: gray;
+  color: white;
   font-size: small;
   font-weight: bold;
   margin-left: 3px
@@ -317,9 +400,9 @@ body {
 }
 
 .progress-bar-value {
-  background-color: var(--capstone-green-strong);
+  background: #FC89B5;
+  background: linear-gradient(90deg, rgba(252, 137, 181, 1) 0%, rgba(252, 117, 169, 1) 25%, rgba(252, 97, 156, 1) 50%, rgba(252, 75, 143, 1) 75%, rgba(252, 61, 134, 1) 100%);
   height: 15px;
-  /* width: 40%; */
   border-radius: 15px;
 }
 
@@ -343,7 +426,7 @@ body {
 }
 
 .profile-add-experience-button {
-  @apply bg-capstone-green hover:bg-capstone-green-strong text-black border-2 border-solid border-black font-bold py-2 px-4 my-2 mx-1 rounded w-60
+  @apply bg-capstone-green-strong hover:bg-capstone-green text-black border-2 border-solid border-capstone-grey-strong font-bold py-2 px-4 my-2 mx-1 rounded w-60
 }
 
 .profile-experience-item-list {
@@ -369,7 +452,7 @@ body {
 }
 
 .experience-item-delete {
-  @apply bg-white shadow appearance-none border rounded w-20 py-2 px-3 text-red-500 leading-tight hover:bg-red-500 hover:text-white;
+  @apply bg-red-500 shadow appearance-none border rounded w-20 py-2 px-3 text-white leading-tight hover:bg-white hover:text-red-500;
 }
 
 /* ========== STUDENT JOB BOARD ========== */
@@ -392,9 +475,9 @@ body {
 }
 
 .sjb-job-item-container {
-  background-color: var(--capstone-blue);
-  border: 2px solid black;
-  border-radius: 5px;
+  background-color: var(--capstone-grey);
+  border: 5px solid var(--capstone-grey-strong);
+  border-radius: 10px;
   width: 100%;
   height: fit-content;
   margin-top: 1%;
@@ -404,7 +487,7 @@ body {
 .sjb-job-item-top-container {
   /* background-color: red; */
   height: fit-content;
-  border-bottom: 2px solid black;
+  border-bottom: 5px solid var(--color-capstone-grey-strong);
 
   display: flex;
   flex-direction: row;
@@ -503,9 +586,141 @@ body {
 }
 
 .sjb-apply-btn {
-  @apply bg-capstone-green hover:bg-capstone-green-strong text-black border-2 border-solid border-black font-bold py-2 px-4 m-5 rounded text-2xl
+  @apply bg-capstone-green-strong hover:bg-capstone-green text-black border-2 border-solid border-capstone-grey-strong font-bold py-2 px-4 m-5 rounded text-2xl
 }
 
 .sjb-apply-disabled {
-  @apply bg-capstone-green text-black border-2 border-solid border-black font-bold py-2 px-4 m-5 rounded text-2xl opacity-50
+  @apply bg-capstone-green-strong text-black border-2 border-solid border-capstone-grey-strong font-bold py-2 px-4 m-5 rounded text-2xl opacity-50
+}
+
+/* =========== COMPANY POSTINGS ========== */
+.cjb-page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cjb-post-container {
+  background-color: var(--capstone-grey);
+  border: 5px solid var(--color-capstone-grey-strong);
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 12px;
+  margin-right: 60px;
+  width: 50%;
+}
+
+.cjb-title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cjb-posting-header {
+  margin-bottom: 4px;
+  font-size: x-large;
+  font-weight: bold;
+  border-bottom: 5px solid var(--capstone-black);
+}
+
+.cjb-posting-desc {
+  margin-bottom: 8px;
+  font-style: italic;
+}
+
+.cjb-skills-contianer{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.cjb-skills-item {
+  background-color: var(--capstone-green-strong);
+  color: black;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: medium;
+}
+
+/* =========== COMPANY POSTING APPLICATIONS ========== */
+.cjba-page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cbja-header-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cjba-app-item-container {
+  border: 5px solid var(--color-capstone-grey-strong);
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  width: 70%;
+}
+
+.cbja-app-item-rank-text {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+}
+
+.cbja-app-item-rank-badge {
+  color: white;
+  font-size: 12px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-weight: bold;
+}
+
+.cjba-app-item-rank-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.cjba-app-item-rank-badge {
+  background-color: var(--capstone-green-strong);
+  color: black;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+}
+
+/* =========== CREATE POSTING ========== */
+.cjp-form-row {
+  display: flex;
+  flex-direction: column;
+  margin: 0px 5px 10px 5px;
+  align-items: center;
+}
+
+.cjp-add-skill-button {
+  @apply bg-capstone-green-strong hover:bg-capstone-green text-black border-2 border-solid border-capstone-grey-strong font-bold py-2 px-4 my-2 mx-1 rounded w-full
+}
+
+.cjp-skills-row {
+  display: flex;
+  margin-left: 10px;
+
+}
+
+.cjp-skills-item {
+  @apply bg-white shadow appearance-none border rounded  text-gray-700 leading-tight flex;
+}
+
+.cjp-skills-text {
+  @apply p-1 w-140
+}
+
+.cjp-days-rows {
+  display: flex;
+  justify-content: space-around;
 }
