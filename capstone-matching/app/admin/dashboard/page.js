@@ -37,10 +37,9 @@ export default async function DashboardPage() {
 
   return (
     <div className="dashboard-page">
-      <h1>Dashboard</h1>
 
       <div className="sd-container">
-        <p className="page-header">Company Dashboard</p>
+        <p className="page-header">Admin Dashboard</p>
         <div className="sd-content-container drop-shadow-2xl">
           <p className="sd-body-text">
             Welcome to the Admin Dashboard. From here you can view all and manage all existing students and companies.

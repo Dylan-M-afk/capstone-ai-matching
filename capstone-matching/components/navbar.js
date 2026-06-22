@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import SignOutButton from './signOutButton'
 import { signOut } from '@/app/login/actions'
 
 
@@ -56,11 +57,7 @@ export default function NavBar({ role }) {
             }
             {role && (
                 <div>
-                    <form action={signOut} style={{ display: 'inline' }}>
-                        <span className="nav-item">
-                            <button type="submit">Sign Out</button>
-                        </span>
-                    </form>
+                    <SignOutButton />
                 </div>
             )}
         </div>
