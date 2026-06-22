@@ -4,7 +4,7 @@
 import { useEffect, useState } from 'react'
 import { createClient } from '@/utils/supabase/client'
 
-export default function StudentJobBoardClient({ initialJobs }) {
+export default function StudentJobBoardClient({ initialJobs, currentUserId }) {
     const supabase = createClient()
 
     const [jobs, setJobs] = useState(initialJobs || []);
@@ -35,14 +35,18 @@ export default function StudentJobBoardClient({ initialJobs }) {
             return
         }
 
-        // Update the job in local state instantly
         setJobs(prev => prev.map(job =>
             job.id === jobId
-                ? { ...job, applications: [{ status: 'Submitted' }] }
+                ? { ...job, applications: [{ status: 'Submitted', student_id: user.id }] }
                 : job
         ))
 
         alert('Successfully Applied!')
+    }
+
+    function myApplication(item) {
+        const apps = item?.applications ?? []
+        return apps.find(app => !currentUserId || app.student_id === currentUserId)
     }
 
     console.log(jobs)
@@ -68,54 +72,60 @@ export default function StudentJobBoardClient({ initialJobs }) {
             {/* List of Job Items */}
             <div className="sjb-job-list-container">
                 {
-                    jobs.map((item, idx) => (
-                        <div className="sjb-job-item-container" key={idx}>
-                            <div className="sjb-job-item-top-container">
-                                <div className="sjb-job-item-top-left">
-                                    <p className="sjb-job-item-title-text">{item.title}</p>
-                                    <p className="sjb-job-item-company-text">
-                                        {item.companies?.company_name.toUpperCase()}
-                                        <span className="sjb-job-item-info-text">
-                                            Type: {item?.job_type} | Location: {item?.location} | Status: {item?.status}
-                                        </span>
-                                    </p>
-                                </div>
-                                <div className="sjb-job-item-top-right">
-                                    <button id={item.id}
-                                        onClick={ApplyToJob}
-                                        disabled={(item?.applications[0]?.status == undefined) && (item?.status == "Open") ? false : true}
-                                        className={(item?.applications[0]?.status == undefined) && (item?.status == "Open") ? "sjb-apply-btn" : "sjb-apply-disabled"}>
-                                        {item?.applications[0]?.status == undefined ? "Apply" : "Applied"}
-                                    </button>
-                                </div>
-                            </div>
-                            <div className="sjb-job-item-bottom-container">
-                                <div className="sjb-job-item-bottom-about-container">
-                                    <p className="font-bold">About: </p>
-                                    <p>{item?.description}</p>
-                                </div>
+                    jobs.map((item, idx) => {
+                        const myApp = myApplication(item)
+                        const alreadyApplied = myApp?.status != undefined
+                        const canApply = !alreadyApplied && item?.status == "Open"
 
-                                <div className="sjb-job-item-bottom-skills-container"><p className="font-bold">Required Skills:</p>
-                                    <ul className="sjb-job-item-skills-list">
-                                        {item?.required_skills?.map((item, idx) => (
-                                            <li className="sjb-job-item-skills-list-item" key={idx}>{item}</li>
-                                        ))}
-                                    </ul>
+                        return (
+                            <div className="sjb-job-item-container" key={idx}>
+                                <div className="sjb-job-item-top-container">
+                                    <div className="sjb-job-item-top-left">
+                                        <p className="sjb-job-item-title-text">{item.title}</p>
+                                        <p className="sjb-job-item-company-text">
+                                            {item.companies?.company_name.toUpperCase()}
+                                            <span className="sjb-job-item-info-text">
+                                                Type: {item?.job_type} | Location: {item?.location} | Status: {item?.status}
+                                            </span>
+                                        </p>
+                                    </div>
+                                    <div className="sjb-job-item-top-right">
+                                        <button id={item.id}
+                                            onClick={ApplyToJob}
+                                            disabled={!canApply}
+                                            className={canApply ? "sjb-apply-btn" : "sjb-apply-disabled"}>
+                                            {alreadyApplied ? "Applied" : "Apply"}
+                                        </button>
+                                    </div>
                                 </div>
+                                <div className="sjb-job-item-bottom-container">
+                                    <div className="sjb-job-item-bottom-about-container">
+                                        <p className="font-bold">About: </p>
+                                        <p>{item?.description}</p>
+                                    </div>
 
-                                <div className="sjb-job-item-bottom-schedule-container">
-                                    <p className="font-bold">Schedule:</p>
-                                    <div>
-                                        {item?.schedule?.split(" | ").map((item, idx) => (
-                                            <div key={idx}>
-                                                <p>{idx == 0 ? "Hours: " : "Days: "}{item}</p>
-                                            </div>
-                                        ))}
+                                    <div className="sjb-job-item-bottom-skills-container"><p className="font-bold">Required Skills:</p>
+                                        <ul className="sjb-job-item-skills-list">
+                                            {item?.required_skills?.map((skill, sIdx) => (
+                                                <li className="sjb-job-item-skills-list-item" key={sIdx}>{skill}</li>
+                                            ))}
+                                        </ul>
+                                    </div>
+
+                                    <div className="sjb-job-item-bottom-schedule-container">
+                                        <p className="font-bold">Schedule:</p>
+                                        <div>
+                                            {item?.schedule?.split(" | ").map((part, pIdx) => (
+                                                <div key={pIdx}>
+                                                    <p>{pIdx == 0 ? "Hours: " : "Days: "}{part}</p>
+                                                </div>
+                                            ))}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    ))
+                        )
+                    })
                 }
             </div>
         </div>
