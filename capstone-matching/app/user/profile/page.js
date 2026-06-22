@@ -276,7 +276,7 @@ function applyExtractedProfile() {
         )}
 
         {extractedProfile && (
-          <div className="mt-4 bg-white border-2 border-black rounded p-4">
+          <div className="mt-4 bg-capstone-grey border-2 border-capstone-grey-strong rounded p-4">
             <p className="font-bold mb-2">Extracted Profile Preview</p>
 
             <pre className="whitespace-pre-wrap text-sm">
