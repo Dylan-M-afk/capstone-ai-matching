@@ -66,6 +66,7 @@ export default function CompanyPage() {
 
                 <input
                   className="w-full bg-white border-2 border-capstone-grey-strong rounded px-3 py-2 text-capstone-grey-strong"
+                  placeholder="Example Company Ltd."
                   value={companyName}
                   onChange={(e) => setCompanyName(e.target.value)}
                 />
@@ -78,6 +79,7 @@ export default function CompanyPage() {
 
                 <input
                   className="w-full bg-white border-2 border-capstone-grey-strong rounded px-3 py-2 text-capstone-grey-strong"
+                  placeholder="Rebecca Allison"
                   value={contactPerson}
                   onChange={(e) => setContactPerson(e.target.value)}
                 />
@@ -91,6 +93,7 @@ export default function CompanyPage() {
                 <input
                   type="email"
                   className="w-full bg-white border-2 border-capstone-grey-strong rounded px-3 py-2 text-capstone-grey-strong"
+                  placeholder="rebecca@example.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
