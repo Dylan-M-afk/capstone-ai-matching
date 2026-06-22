@@ -64,7 +64,7 @@ export default function Home() {
     return (
         <div className="sjb-page-container">
             {/* Header */}
-            <p className="sjb-header-text ">Student Job Board</p>
+            <p className="page-header ">Student Job Board</p>
 
             {/* List of Job Items */}
             <div className="sjb-job-list-container">

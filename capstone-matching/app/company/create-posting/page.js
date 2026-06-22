@@ -115,8 +115,8 @@ export default function JobPostCreate() {
   // UI
   // =========================
   return (
-    <div className="profile-page-container p-6">
-      <p className="profile-header-text">Create Job Posting</p>
+    <div className="profile-page-container p-6 drop-shadow-2xl">
+      <p className="page-header">Company Job Postings</p>
 
       <form onSubmit={handleSubmit} className="profile-content-container p-6 space-y-6">
 
@@ -125,6 +125,9 @@ export default function JobPostCreate() {
           {/* LEFT */}
           <div className="profile-content-left">
 
+            <label className="profile-form-label">
+              Job Title:
+            </label>
             <input
               className="profile-form-field"
               placeholder="Job Title"
@@ -132,13 +135,18 @@ export default function JobPostCreate() {
               onChange={e => setTitle(e.target.value)}
             />
 
+            <label className="profile-form-label">
+              Description:
+            </label>
             <textarea
               className="profile-form-field h-24"
               placeholder="Description"
               value={description}
               onChange={e => setDescription(e.target.value)}
             />
-
+            <label className="profile-form-label">
+              Location:
+            </label>
             <input
               className="profile-form-field"
               placeholder="Location"
@@ -146,6 +154,9 @@ export default function JobPostCreate() {
               onChange={e => setLocation(e.target.value)}
             />
 
+            <label className="profile-form-label">
+              Availability:
+            </label>
             <select
               className="profile-form-field"
               value={jobType}
@@ -163,43 +174,59 @@ export default function JobPostCreate() {
           <div className="profile-content-right">
 
             {/* SKILLS */}
-            <div className="profile-form-row">
+            <label className="profile-form-label">
+              Skills:
+            </label>
+            <div className="cjp-form-row">
               <input
                 className="profile-form-field"
                 placeholder="Add skill"
                 value={skillInput}
                 onChange={e => setSkillInput(e.target.value)}
               />
-              <button type="button" onClick={addSkill}>
+              <button type="button" className='cjp-add-skill-button' onClick={addSkill}>
                 Add
               </button>
             </div>
 
+            <label className="profile-form-label">
+              Skill List:
+            </label>
             {skills.map((s, i) => (
-              <div key={i}>
-                {s}
-                <button type="button" onClick={() => removeSkill(i)}>X</button>
+              <div className='cjp-skills-row' key={i}>
+                <div className="cjp-skills-item">
+                  <p className="cjp-skills-text">{s} </p>
+                  <button type="button " className='experience-item-delete' onClick={() => removeSkill(i)}>X</button>
+                </div>
+
               </div>
             ))}
 
             {/* DAYS */}
             <div>
-              <p>Work Days:</p>
-              {daysOfWeek.map(day => (
-                <label key={day}>
-                  <input
-                    type="checkbox"
-                    checked={days.includes(day)}
-                    onChange={() => toggleDay(day)}
-                  />
-                  {day}
-                </label>
-              ))}
+              <label className="profile-form-label">
+                Work Days:
+              </label>
+              <p></p>
+
+              <div className='cjp-days-rows'>
+                {daysOfWeek.map(day => (
+                  <label key={day}>
+                    <input
+                      type="checkbox"
+                      checked={days.includes(day)}
+                      onChange={() => toggleDay(day)}
+                    />
+                    {day}
+                  </label>
+                ))}
+              </div>
+
             </div>
 
             {/* TIME RANGE SLIDER */}
             <div>
-              <p>Working Hours: {timeRange[0]} - {timeRange[1]}</p>
+              <label className="profile-form-label">Working Hours: {timeRange[0]} - {timeRange[1]}</label>
 
               <Slider
                 range
@@ -207,6 +234,14 @@ export default function JobPostCreate() {
                 max={24}
                 value={timeRange}
                 onChange={setTimeRange}
+                railStyle={{ backgroundColor: "white", height: 10 }}
+                trackStyle={{ backgroundColor: "#7bffca", height: 10 }}
+                handleStyle={
+                  {borderColor: "#7bffca",
+                  height: 20,
+                  width: 20,
+                  backgroundColor: "#7bffca"}
+                }
               />
             </div>
 
@@ -214,9 +249,9 @@ export default function JobPostCreate() {
         </div>
 
         {/* ERROR */}
-        {error && <p>{error}</p>}
+        {error && <p className='text-red-500'>ERROR: {error}</p>}
 
-        <button type="submit">Create Job</button>
+        <button className='button' type="submit">Create Job</button>
       </form>
     </div>
   )

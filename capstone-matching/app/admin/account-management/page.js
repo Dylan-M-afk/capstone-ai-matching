@@ -48,13 +48,9 @@ export default function CompanyPage() {
   }
 
   return (
-    <div className="flex justify-center mt-10">
-
-      <div className="w-[70%] bg-capstone-blue border-[3px] border-black rounded p-8">
-
-        <p className="text-4xl font-bold border-b-[10px] border-black inline-block mb-8">
-          Create Company
-        </p>
+    <div className="acc-page-container drop-shadow-2xl">
+      <p className="page-header">Company Creation</p>
+      <div className="w-[70%] bg-capstone-grey border-[3px] border-capstone-grey-strong rounded p-8">
 
         <form onSubmit={handleSubmit}>
 
@@ -69,7 +65,7 @@ export default function CompanyPage() {
                 </label>
 
                 <input
-                  className="w-full bg-white border-2 border-black rounded px-3 py-2"
+                  className="w-full bg-white border-2 border-capstone-grey-strong rounded px-3 py-2 text-capstone-grey-strong"
                   value={companyName}
                   onChange={(e) => setCompanyName(e.target.value)}
                 />
@@ -81,7 +77,7 @@ export default function CompanyPage() {
                 </label>
 
                 <input
-                  className="w-full bg-white border-2 border-black rounded px-3 py-2"
+                  className="w-full bg-white border-2 border-capstone-grey-strong rounded px-3 py-2 text-capstone-grey-strong"
                   value={contactPerson}
                   onChange={(e) => setContactPerson(e.target.value)}
                 />
@@ -94,7 +90,7 @@ export default function CompanyPage() {
 
                 <input
                   type="email"
-                  className="w-full bg-white border-2 border-black rounded px-3 py-2"
+                  className="w-full bg-white border-2 border-capstone-grey-strong rounded px-3 py-2 text-capstone-grey-strong"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
@@ -113,7 +109,7 @@ export default function CompanyPage() {
                 <div className="flex gap-3">
 
                   <input
-                    className="flex-1 bg-gray-100 border-2 border-black rounded px-3 py-2"
+                    className="flex-1 bg-gray-100 border-2 border-capstone-grey-strong rounded px-3 py-2 text-capstone-grey-strong"
                     value={accessCode}
                     readOnly
                   />
@@ -121,7 +117,7 @@ export default function CompanyPage() {
                   <button
                     type="button"
                     onClick={generateCode}
-                    className="bg-capstone-green hover:bg-capstone-green-strong border-2 border-black rounded px-4 py-2 font-bold"
+                    className="button text-2xl"
                   >
                     Generate
                   </button>
@@ -146,7 +142,7 @@ export default function CompanyPage() {
             )}
 
             <button
-              className="bg-capstone-green hover:bg-capstone-green-strong border-2 border-black rounded px-6 py-3 font-bold text-lg disabled:opacity-50"
+              className="button text-3xl"
               type="submit"
               disabled={loading}
             >

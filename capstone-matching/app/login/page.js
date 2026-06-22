@@ -25,7 +25,8 @@ export default function Home() {
 
 
   return (
-    <div className='login-register-container'>
+    <div className='login-register-container drop-shadow-xl'>
+      <p className="page-header">{loginRegister}  </p>
       <div className="login-register-btn-row ">
 
         <button className={loginRegister == "Register" ? "button" : "button-disabled"} onClick={registerButton}>

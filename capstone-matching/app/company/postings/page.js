@@ -10,30 +10,30 @@ export default function Home() {
 
   useEffect(() => {
     async function fetchApplications() {
-    
-    const { data: { user }, error: authError } = await supabase.auth.getUser()
-    if (authError || !user) {
-      console.error('Error fetching user:', authError)
-      return
+
+      const { data: { user }, error: authError } = await supabase.auth.getUser()
+      if (authError || !user) {
+        console.error('Error fetching user:', authError)
+        return
       }
 
-    const { data: applications, error: appError } = await supabase
-      .from('job_posts')
-      .select(`*, applications!applications_job_id_fkey(count)`)
-      .eq('company_id', user.id)
+      const { data: applications, error: appError } = await supabase
+        .from('job_posts')
+        .select(`*, applications!applications_job_id_fkey(count)`)
+        .eq('company_id', user.id)
 
-    if (appError) {
-      console.error(appError)
-      return
+      if (appError) {
+        console.error(appError)
+        return
       }
       setPostings(applications)
     }
-    fetchApplications() 
+    fetchApplications()
   }, [])
 
   return (
-    <div className="job-postings-container">
-      <h2>Job Postings</h2>
+    <div className="cjb-page-container ">
+      <p className="page-header">Company Job Postings</p>
 
       {postings.length === 0 ? (
         <p>No postings found</p>
@@ -41,44 +41,26 @@ export default function Home() {
         postings.map((posting) => (
           <div
             key={posting.id}
-            style={{
-              border: "1px solid #ccc",
-              borderRadius: "10px",
-              padding: "16px",
-              marginBottom: "12px",
-              marginRight: "60px",
-              boxShadow: "0 2px 6px rgba(0,0,0,0.1)"
-            }}
+            className='cjb-post-container drop-shadow-2xl'
           >
             {/* Title + Application Count */}
             <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center"
-              }}
+              className='cjb-title-container'
             >
-              <h3 style={{ marginBottom: "8px" }}>
+              <p className='cjb-posting-header'>
                 {posting.title}
-              </h3>
+              </p>
 
               <Link
                 href={`postings/applications/${posting.id}`}
-                style={{
-                  background: "#222",
-                  color: "#fff",
-                  padding: "6px 10px",
-                  borderRadius: "8px",
-                  fontSize: "14px",
-                  textDecoration: "none"
-                }}
+                className='button'
               >
                 {posting.applications?.[0]?.count || 0} Applications
               </Link>
             </div>
 
             {/* Description */}
-            <p style={{ marginBottom: "10px", color: "#444" }}>
+            <p className='cjb-posting-desc '>
               {posting.description}
             </p>
 
@@ -86,23 +68,11 @@ export default function Home() {
             <div>
               <strong>Required Skills:</strong>
 
-              <div
-                style={{
-                  display: "flex",
-                  flexWrap: "wrap",
-                  gap: "6px",
-                  marginTop: "6px"
-                }}
-              >
+              <div className='cjb-skills-contianer'>
                 {posting.required_skills?.map((skill, i) => (
                   <span
                     key={i}
-                    style={{
-                      backgroundColor: "#eef",
-                      padding: "4px 8px",
-                      borderRadius: "6px",
-                      fontSize: "12px"
-                    }}
+                    className='cjb-skills-item'
                   >
                     {skill}
                   </span>

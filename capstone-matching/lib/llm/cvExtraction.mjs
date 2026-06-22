@@ -1,22 +1,10 @@
+import { chatCompletion } from "./llmClient.mjs";
+
 export async function extractProfileFromCV(cvText) {
-  const response = await fetch(`${process.env.LITELLM_BASE_URL}/v1/chat/completions`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${process.env.LITELLM_API_KEY || "anything"}`
-    },
-    body: JSON.stringify({
-      model: process.env.LLM_MODEL || "anthropic/claude-haiku-4-5-20251001",
-      temperature: 0,
-      messages: [
-        {
-          role: "system",
-          content:
-            "You extract structured student profile data from CV text. Return only valid JSON."
-        },
-        {
-          role: "user",
-content: `
+  const content = await chatCompletion({
+    system:
+      "You extract structured student profile data from CV text. Return only valid JSON.",
+    userContent: `
 Extract this CV into JSON:
 
 {
@@ -56,18 +44,7 @@ Rules:
 CV text:
 ${cvText}
 `
-        }
-      ]
-    })
   });
-
-  if (!response.ok) {
-    const errorText = await response.text();
-    throw new Error(`LLM request failed: ${response.status} ${errorText}`);
-  }
-
-  const data = await response.json();
-  const content = data.choices?.[0]?.message?.content;
 
   const cleanedContent = content
     .replace(/```json/g, "")
