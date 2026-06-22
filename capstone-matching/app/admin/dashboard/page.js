@@ -37,7 +37,6 @@ export default async function DashboardPage() {
 
   return (
     <div className="dashboard-page">
-      <h1>Dashboard</h1>
 
       <div className="sd-container">
         <p className="page-header">Company Dashboard</p>
