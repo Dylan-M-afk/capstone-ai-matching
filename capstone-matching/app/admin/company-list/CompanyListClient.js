@@ -10,12 +10,13 @@ export default function CompanyListClient({ initialCompanies }) {
 
   async function toggleUserStatus(user) {
     setUpdatingId(user.id)
+    console.log(user.id)
 
     const newStatus =
       user.status === 'Active' ? 'Inactive' : 'Active'
 
     try {
-      const res = await fetch('/api/users/toggle-status', {
+      const res = await fetch('/api/companies/toggle-status', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
