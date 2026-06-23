@@ -5,13 +5,10 @@ export default function Home() {
     <div className="home-container">
       <p className="page-header">Home Page</p>
       <div className="home-content-container drop-shadow-2xl">
-        <p className="home-header-text">READY TO CONNECT?</p>
-        <p className="home-body-text">Here at [COMPANY NAME], we strive to
-           improve the job market by connecting
-          companies looking to hire with talented students using the power of LLMs to match applicants to the roles
-          best suited to their abilities.</p>
+        <p className="home-header-text">Opportunity Starts Here</p>
+        <p className="home-body-text">Create and account or sign in to discover new career opportunities</p>
           <Link href="/login">
-            <button className="home-login-btn drop-shadow-lg">Login/Register</button>  
+            <button className="home-login-btn drop-shadow-lg">Get Started</button>  
           </Link>
 
       </div>
